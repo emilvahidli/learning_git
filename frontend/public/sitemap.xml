@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Home - Azerbaijani -->
+  <url>
+    <loc>https://proep.az/home/az</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="az" href="https://proep.az/home/az"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://proep.az/home/en"/>
+  </url>
+  
+  <!-- Home - English -->
+  <url>
+    <loc>https://proep.az/home/en</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="az" href="https://proep.az/home/az"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://proep.az/home/en"/>
+  </url>
+  
+  <!-- About - Azerbaijani -->
+  <url>
+    <loc>https://proep.az/about/az</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="az" href="https://proep.az/about/az"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://proep.az/about/en"/>
+  </url>
+  
+  <!-- About - English -->
+  <url>
+    <loc>https://proep.az/about/en</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="az" href="https://proep.az/about/az"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://proep.az/about/en"/>
+  </url>
+  
+  <!-- Services - Azerbaijani -->
+  <url>
+    <loc>https://proep.az/services/az</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="az" href="https://proep.az/services/az"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://proep.az/services/en"/>
+  </url>
+  
+  <!-- Services - English -->
+  <url>
+    <loc>https://proep.az/services/en</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="az" href="https://proep.az/services/az"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://proep.az/services/en"/>
+  </url>
+  
+  <!-- Portfolio - Azerbaijani -->
+  <url>
+    <loc>https://proep.az/portfolio/az</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="az" href="https://proep.az/portfolio/az"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://proep.az/portfolio/en"/>
+  </url>
+  
+  <!-- Portfolio - English -->
+  <url>
+    <loc>https://proep.az/portfolio/en</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="az" href="https://proep.az/portfolio/az"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://proep.az/portfolio/en"/>
+  </url>
+  
+  <!-- Blog - Azerbaijani -->
+  <url>
+    <loc>https://proep.az/blog/az</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="az" href="https://proep.az/blog/az"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://proep.az/blog/en"/>
+  </url>
+  
+  <!-- Blog - English -->
+  <url>
+    <loc>https://proep.az/blog/en</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="az" href="https://proep.az/blog/az"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://proep.az/blog/en"/>
+  </url>
+  
+  <!-- Contact - Azerbaijani -->
+  <url>
+    <loc>https://proep.az/contact/az</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="az" href="https://proep.az/contact/az"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://proep.az/contact/en"/>
+  </url>
+  
+  <!-- Contact - English -->
+  <url>
+    <loc>https://proep.az/contact/en</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="az" href="https://proep.az/contact/az"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://proep.az/contact/en"/>
+  </url>
+  
+</urlset>
