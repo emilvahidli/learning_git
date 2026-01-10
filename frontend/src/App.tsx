@@ -5,6 +5,7 @@ import { Footer } from './components/Footer';
 import { Head } from './components/Head';
 import { FaviconUpdater } from './components/FaviconUpdater';
 import { GoogleAnalytics } from './components/GoogleAnalytics';
+import { StructuredData } from './components/StructuredData';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Services } from './pages/Services';
@@ -34,6 +35,7 @@ function PageWrapper({ children }: { children: ReactNode }) {
   return (
     <>
       <GoogleAnalytics />
+      <StructuredData />
       <FaviconUpdater />
       <Head />
       <Navigation />
