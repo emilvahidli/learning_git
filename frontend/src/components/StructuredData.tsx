@@ -105,9 +105,19 @@ export function StructuredData() {
     };
 
     // 2. WebSite Schema (for SiteLinks in Google)
+    const menuItems = [
+      { name: language === 'az' ? 'Ana Səhifə' : 'Home', url: `${siteUrl}/home/${language}` },
+      { name: language === 'az' ? 'Haqqımızda' : 'About', url: `${siteUrl}/about/${language}` },
+      { name: language === 'az' ? 'Xidmətlər' : 'Services', url: `${siteUrl}/services/${language}` },
+      { name: language === 'az' ? 'Portfel' : 'Portfolio', url: `${siteUrl}/portfolio/${language}` },
+      { name: language === 'az' ? 'Blog' : 'Blog', url: `${siteUrl}/blog/${language}` },
+      { name: language === 'az' ? 'Əlaqə' : 'Contact', url: `${siteUrl}/contact/${language}` },
+    ];
+
     const websiteSchema = {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
+      '@id': `${siteUrl}#website`,
       name: 'Proep.az',
       url: siteUrl,
       alternateName: 'Proep',
@@ -115,6 +125,23 @@ export function StructuredData() {
         ? 'Süni intellekt və rəqəmsal həllər üzrə professional endpoint xidmətləri'
         : 'Professional endpoint services for AI and digital solutions',
       inLanguage: [language === 'az' ? 'az-AZ' : 'en-US', language === 'az' ? 'en-US' : 'az-AZ'],
+      publisher: {
+        '@type': 'Organization',
+        name: 'Proep.az',
+        logo: {
+          '@type': 'ImageObject',
+          url: `${siteUrl}/favicon-proep.png`,
+        },
+      },
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: menuItems.map((item, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: item.name,
+          url: item.url,
+        })),
+      },
       potentialAction: {
         '@type': 'SearchAction',
         target: {
