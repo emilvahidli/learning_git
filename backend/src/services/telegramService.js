@@ -29,14 +29,19 @@ const APPEAL_TYPES = {
  */
 export async function sendTelegramNotification(appealData) {
   try {
+    console.log('📤 Sending Telegram notification for appeal ID:', appealData?.id);
+    console.log('📋 Appeal data:', JSON.stringify(appealData, null, 2));
+    
     const appealType = APPEAL_TYPES[appealData.appeal] || 'Naməlum';
+    const messagePreview = (appealData.message || '').substring(0, 500);
+    
     const messageText = `🆕 *Yeni Müraciət*
 
-👤 *Ad:* ${escapeMarkdown(appealData.name)}
-📧 *E-poçt:* ${escapeMarkdown(appealData.mail)}
-📱 *Telefon:* ${escapeMarkdown(appealData.phone_number)}
+👤 *Ad:* ${escapeMarkdown(appealData.name || '')}
+📧 *E-poçt:* ${escapeMarkdown(appealData.mail || '')}
+📱 *Telefon:* ${escapeMarkdown(appealData.phone_number || '')}
 📋 *Müraciət Növü:* ${escapeMarkdown(appealType)}
-💬 *Mesaj:* ${escapeMarkdown(appealData.message.substring(0, 500))}
+💬 *Mesaj:* ${escapeMarkdown(messagePreview)}
 
 🕐 *Tarix:* ${formatDate(appealData.created_date)}
 🆔 *ID:* ${appealData.id}`;
@@ -46,6 +51,8 @@ export async function sendTelegramNotification(appealData) {
       text: messageText,
       parse_mode: 'Markdown',
     });
+
+    console.log('📨 Telegram payload:', payload);
 
     // Use https.request for Node.js compatibility (works with all versions)
     return new Promise((resolve, reject) => {
@@ -71,26 +78,35 @@ export async function sendTelegramNotification(appealData) {
         res.on('end', () => {
           try {
             const result = JSON.parse(data);
+            console.log('📬 Telegram API response:', JSON.stringify(result, null, 2));
             if (!result.ok) {
-              console.error('Telegram notification failed:', result);
+              console.error('❌ Telegram notification failed:', result);
               reject(new Error(`Telegram API error: ${result.description || 'Unknown error'}`));
             } else {
+              console.log('✅ Telegram notification sent successfully!');
               resolve(result);
             }
           } catch (error) {
-            console.error('Error parsing Telegram response:', error);
+            console.error('❌ Error parsing Telegram response:', error);
+            console.error('Raw response:', data);
             reject(error);
           }
         });
       });
 
       req.on('error', (error) => {
-        console.error('Telegram request error:', error);
+        console.error('❌ Telegram request error:', error);
         reject(error);
+      });
+
+      req.setTimeout(10000, () => {
+        req.destroy();
+        reject(new Error('Telegram request timeout'));
       });
 
       req.write(payload);
       req.end();
+      console.log('📡 Telegram request sent to:', TELEGRAM_API_URL);
     });
   } catch (error) {
     console.error('Error sending Telegram notification:', error);
