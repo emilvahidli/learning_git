@@ -85,23 +85,54 @@ export function StructuredData() {
     const organizationSchema = {
       '@context': 'https://schema.org',
       '@type': 'Organization',
+      '@id': `${siteUrl}#organization`,
       name: 'Proep.az',
       alternateName: 'Proep',
+      legalName: 'Proep.az - Pro End Point',
       url: siteUrl,
-      logo: `${siteUrl}/favicon-proep.png`,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteUrl}/favicon-proep.png`,
+        width: 512,
+        height: 512,
+      },
+      image: `${siteUrl}/favicon-proep.png`,
       description: language === 'az' 
-        ? 'Süni intellekt və rəqəmsal həllər üzrə professional endpoint xidmətləri'
-        : 'Professional endpoint services for AI and digital solutions',
-      sameAs: [
-        // Add social media links here if available
-        // 'https://www.linkedin.com/company/proep',
-        // 'https://twitter.com/proep',
-      ],
+        ? 'Süni intellekt və rəqəmsal həllər üzrə professional endpoint xidmətləri. AI konsaltinq, backend development, API həlləri.'
+        : 'Professional endpoint services for AI and digital solutions. AI consulting, backend development, API solutions.',
+      foundingDate: '2026',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: language === 'az' ? 'Bakı' : 'Baku',
+        addressRegion: 'Baku',
+        addressCountry: 'AZ',
+        streetAddress: language === 'az' ? 'Nizami küç. 203B' : 'Nizami Street 203B',
+      },
       contactPoint: {
         '@type': 'ContactPoint',
         contactType: 'Customer Service',
         availableLanguage: ['az', 'en'],
+        email: 'info@proep.az', // Update with actual email if available
+        url: `${siteUrl}/contact/${language}`,
       },
+      sameAs: [
+        // Add social media links here if available
+        // 'https://www.linkedin.com/company/proep',
+        // 'https://twitter.com/proep',
+        // 'https://github.com/proep',
+      ],
+      areaServed: {
+        '@type': 'Country',
+        name: 'Azerbaijan',
+      },
+      knowsAbout: [
+        'Artificial Intelligence',
+        'Machine Learning',
+        'Backend Development',
+        'API Development',
+        'Cloud Solutions',
+        'Digital Transformation',
+      ],
     };
 
     // 2. WebSite Schema (for SiteLinks in Google)
@@ -184,28 +215,131 @@ export function StructuredData() {
       '@id': `${siteUrl}${location.pathname}#webpage`,
       url: `${siteUrl}${location.pathname}`,
       name: pageData.name,
+      headline: pageData.name,
       description: pageData.description,
       inLanguage: language === 'az' ? 'az-AZ' : 'en-US',
+      datePublished: '2026-01-09',
+      dateModified: new Date().toISOString().split('T')[0],
       isPartOf: {
         '@type': 'WebSite',
+        '@id': `${siteUrl}#website`,
         name: 'Proep.az',
         url: siteUrl,
       },
       about: {
+        '@id': `${siteUrl}#organization`,
         '@type': 'Organization',
         name: 'Proep.az',
       },
       breadcrumb: {
         '@id': `${siteUrl}${location.pathname}#breadcrumb`,
       },
+      publisher: {
+        '@id': `${siteUrl}#organization`,
+        '@type': 'Organization',
+        name: 'Proep.az',
+        logo: {
+          '@type': 'ImageObject',
+          url: `${siteUrl}/favicon-proep.png`,
+        },
+      },
       mainEntity: {
+        '@id': `${siteUrl}#organization`,
         '@type': 'Organization',
         name: 'Proep.az',
       },
     };
 
+    // 5. Page-specific schemas
+    const pageSpecificSchemas: any[] = [];
+
+    // Service Schema for Services page
+    if (path === 'services') {
+      const serviceSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        '@id': `${siteUrl}${location.pathname}#service`,
+        name: pageData.name,
+        description: pageData.description,
+        provider: {
+          '@id': `${siteUrl}#organization`,
+          '@type': 'Organization',
+          name: 'Proep.az',
+        },
+        areaServed: {
+          '@type': 'Country',
+          name: 'Azerbaijan',
+        },
+        serviceType: language === 'az' 
+          ? ['AI Konsaltinq', 'Backend Development', 'API Həlləri', 'Cloud Solutions']
+          : ['AI Consulting', 'Backend Development', 'API Solutions', 'Cloud Solutions'],
+        offers: {
+          '@type': 'Offer',
+          description: pageData.description,
+        },
+      };
+      pageSpecificSchemas.push(serviceSchema);
+    }
+
+    // ContactPage Schema for Contact page
+    if (path === 'contact') {
+      const contactPageSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'ContactPage',
+        '@id': `${siteUrl}${location.pathname}#contactpage`,
+        name: pageData.name,
+        description: pageData.description,
+        mainEntity: {
+          '@id': `${siteUrl}#organization`,
+          '@type': 'Organization',
+          name: 'Proep.az',
+          contactPoint: {
+            '@type': 'ContactPoint',
+            contactType: 'Customer Service',
+            availableLanguage: ['az', 'en'],
+            email: 'info@proep.az', // Update with actual email if available
+            url: `${siteUrl}/contact/${language}`,
+          },
+        },
+      };
+      pageSpecificSchemas.push(contactPageSchema);
+    }
+
+    // AboutPage Schema for About page
+    if (path === 'about') {
+      const aboutPageSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'AboutPage',
+        '@id': `${siteUrl}${location.pathname}#aboutpage`,
+        name: pageData.name,
+        description: pageData.description,
+        mainEntity: {
+          '@id': `${siteUrl}#organization`,
+          '@type': 'Organization',
+          name: 'Proep.az',
+        },
+      };
+      pageSpecificSchemas.push(aboutPageSchema);
+    }
+
+    // CollectionPage Schema for Portfolio and Blog
+    if (path === 'portfolio' || path === 'blog') {
+      const collectionPageSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        '@id': `${siteUrl}${location.pathname}#collectionpage`,
+        name: pageData.name,
+        description: pageData.description,
+        mainEntity: {
+          '@type': 'ItemList',
+          '@id': `${siteUrl}${location.pathname}#itemlist`,
+        },
+      };
+      pageSpecificSchemas.push(collectionPageSchema);
+    }
+
     // Inject all schemas
-    const schemas = [organizationSchema, websiteSchema, breadcrumbSchema, webpageSchema];
+    const schemas = [organizationSchema, websiteSchema, breadcrumbSchema, webpageSchema, ...pageSpecificSchemas];
 
     schemas.forEach((schema, index) => {
       const script = document.createElement('script');
