@@ -22,8 +22,8 @@ export const validateAppeal = [
   body('appeal')
     .notEmpty()
     .withMessage('Appeal is required')
-    .isInt({ min: 1, max: 5 })
-    .withMessage('Appeal must be an integer between 1 and 5'),
+    .isInt({ min: 1, max: 9 })
+    .withMessage('Appeal must be an integer between 1 and 9'),
 
   // Name validation
   body('name')

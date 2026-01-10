@@ -1,34 +1,50 @@
 import { useLanguage } from '../contexts/LanguageContext';
-import { Mail, Phone, MapPin, Send, Clock } from 'lucide-react';
-import { useState } from 'react';
+import { Mail, Phone, MapPin, Send, Clock, AlertCircle } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { api } from '../config/api';
+import React from 'react';
 
 export function Contact() {
   const { language } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    company: '',
-    subject: '',
+    phone_number: '',
+    appeal: 1, // Default appeal type (1-9, Web saytın yaradılması)
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const formRef = useRef<HTMLDivElement>(null);
 
   const content = {
     az: {
       title: 'Əlaqə',
       subtitle: 'Layihəniz haqqında danışaq və birgə gələcək quaq',
       form: {
-        name: 'Ad Soyad',
+        name: 'Ad',
         email: 'E-poçt',
-        company: 'Şirkət',
-        subject: 'Mövzu',
+        phone: 'Telefon',
+        appeal: 'Müraciət Növü',
         message: 'Mesaj',
         send: 'Göndər',
-        namePlaceholder: 'Adınızı daxil edin',
+        sending: 'Göndərilir...',
+        namePlaceholder: 'Adınızı daxil edin (maksimum 30 simvol)',
         emailPlaceholder: 'E-poçt ünvanınızı daxil edin',
-        companyPlaceholder: 'Şirkət adını daxil edin',
-        subjectPlaceholder: 'Mövzunu daxil edin',
-        messagePlaceholder: 'Mesajınızı yazın...',
+        phonePlaceholder: 'XX XXX XX XX',
+        messagePlaceholder: 'Mesajınızı yazın... (maksimum 2000 simvol)',
+        appealOptions: [
+          { value: 1, label: 'Web saytın yaradılması' },
+          { value: 2, label: 'AI Konsaltinq və Strategiya' },
+          { value: 3, label: 'Backend Development və API Həlləri' },
+          { value: 4, label: 'AI Model İnteqrasiyası' },
+          { value: 5, label: 'Avtomatlaşdırma Sistemləri' },
+          { value: 6, label: 'Data Analitika və Machine Learning' },
+          { value: 7, label: 'Mövcud Sistemin Təkmilləşdirilməsi' },
+          { value: 8, label: 'Texniki Dəstək və Konsaltinq' },
+          { value: 9, label: 'Digər' },
+        ],
       },
       info: {
         title: 'Əlaqə Məlumatları',
@@ -42,22 +58,36 @@ export function Contact() {
         hoursText: 'B.e – Cümə | 09:00 – 18:00',
       },
       success: 'Mesajınız uğurla göndərildi! Tezliklə sizinlə əlaqə saxlayacağıq.',
+      error: 'Xəta baş verdi. Zəhmət olmasa yenidən cəhd edin.',
+      errorNetwork: 'Şəbəkə xətası. İnternet bağlantınızı yoxlayın.',
+      errorValidation: 'Xahiş edirik bütün sahələri düzgün doldurun.',
     },
     en: {
       title: 'Contact',
       subtitle: 'Let\'s talk about your project and build the future together',
       form: {
-        name: 'Full Name',
+        name: 'Name',
         email: 'Email',
-        company: 'Company',
-        subject: 'Subject',
+        phone: 'Phone',
+        appeal: 'Appeal Type',
         message: 'Message',
         send: 'Send',
-        namePlaceholder: 'Enter your name',
+        sending: 'Sending...',
+        namePlaceholder: 'Enter your name (max 30 characters)',
         emailPlaceholder: 'Enter your email address',
-        companyPlaceholder: 'Enter company name',
-        subjectPlaceholder: 'Enter subject',
-        messagePlaceholder: 'Write your message...',
+        phonePlaceholder: 'XX XXX XX XX',
+        messagePlaceholder: 'Write your message... (max 2000 characters)',
+        appealOptions: [
+          { value: 1, label: 'Website Development' },
+          { value: 2, label: 'AI Consulting & Strategy' },
+          { value: 3, label: 'Backend Development & API Solutions' },
+          { value: 4, label: 'AI Model Integration' },
+          { value: 5, label: 'Automation Systems' },
+          { value: 6, label: 'Data Analytics & Machine Learning' },
+          { value: 7, label: 'Existing System Enhancement' },
+          { value: 8, label: 'Technical Support & Consulting' },
+          { value: 9, label: 'Other' },
+        ],
       },
       info: {
         title: 'Contact Information',
@@ -71,18 +101,112 @@ export function Contact() {
         hoursText: 'Mon – Fri | 09:00 – 18:00',
       },
       success: 'Your message has been sent successfully! We will contact you soon.',
+      error: 'An error occurred. Please try again.',
+      errorNetwork: 'Network error. Please check your internet connection.',
+      errorValidation: 'Please fill all fields correctly.',
     },
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to a backend
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', company: '', subject: '', message: '' });
-    }, 3000);
+    e.stopPropagation(); // Prevent event bubbling
+    
+    // Prevent double submission
+    if (loading || submitted) {
+      return;
+    }
+    
+    setError(null);
+    setLoading(true);
+
+    try {
+      // Validate form data
+      if (!formData.name.trim() || !formData.email.trim() || !formData.phone_number.trim() || !formData.message.trim()) {
+        setError(content[language].errorValidation);
+        setLoading(false);
+        return;
+      }
+
+      // Validate name length
+      if (formData.name.length > 30) {
+        setError(language === 'az' ? 'Ad maksimum 30 simvol ola bilər.' : 'Name must be maximum 30 characters.');
+        setLoading(false);
+        return;
+      }
+
+      // Validate message length
+      if (formData.message.length > 2000) {
+        setError(language === 'az' ? 'Mesaj maksimum 2000 simvol ola bilər.' : 'Message must be maximum 2000 characters.');
+        setLoading(false);
+        return;
+      }
+
+      // Prepare phone number with +994 prefix if not already present
+      let phoneNumber = formData.phone_number.trim();
+      if (!phoneNumber.startsWith('+994')) {
+        // Remove any existing +994 and spaces, then add +994
+        phoneNumber = phoneNumber.replace(/^\+994\s*/, '').replace(/\s+/g, '');
+        phoneNumber = `+994${phoneNumber}`;
+      }
+
+      // Prepare request data according to backend API
+      const requestData = {
+        mail: formData.email,
+        phone_number: phoneNumber, // With +994 prefix
+        appeal: formData.appeal, // Integer 1-9
+        name: formData.name,
+        message: formData.message,
+      };
+
+      // Send request to backend API
+      const response = await fetch(api.appeal, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || content[language].error);
+      }
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Success
+        setSubmitted(true);
+        setFormData({ name: '', email: '', phone_number: '', appeal: 1, message: '' });
+        setError(null);
+        
+        // Scroll to top to show success message
+        if (formRef.current) {
+          formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        
+        // Reset success message after 5 seconds
+        setTimeout(() => {
+          setSubmitted(false);
+        }, 5000);
+      } else {
+        throw new Error(result.message || content[language].error);
+      }
+    } catch (err: any) {
+      console.error('Error submitting form:', err);
+      if (err.message === 'Failed to fetch' || err.message.includes('network')) {
+        setError(content[language].errorNetwork);
+      } else {
+        setError(err.message || content[language].error);
+      }
+      
+      // Scroll to top to show error message
+      if (formRef.current) {
+        formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -91,6 +215,29 @@ export function Contact() {
       [e.target.name]: e.target.value,
     });
   };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value;
+    // Remove +994 if user tries to type it manually (we'll add it automatically)
+    value = value.replace(/^\+994\s*/, '');
+    // Remove any non-digit characters except spaces
+    value = value.replace(/[^\d\s]/g, '');
+    // Limit to 9 digits (Azerbaijan phone format: XX XXX XX XX)
+    const digits = value.replace(/\s/g, '');
+    if (digits.length <= 9) {
+      setFormData({
+        ...formData,
+        phone_number: value,
+      });
+    }
+  };
+
+  // Scroll to top when error or success message appears
+  useEffect(() => {
+    if ((submitted || error) && formRef.current) {
+      formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [submitted, error]);
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white pt-24">
@@ -108,21 +255,33 @@ export function Contact() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <div className="bg-gradient-to-br from-white/5 to-transparent backdrop-blur-sm border border-white/10 rounded-2xl p-8">
+            <div ref={formRef} className="bg-gradient-to-br from-white/5 to-transparent backdrop-blur-sm border border-white/10 rounded-2xl p-8">
               <h2 className="text-2xl font-bold mb-6">
                 {language === 'az' ? 'Mesaj Göndərin' : 'Send a Message'}
               </h2>
 
               {submitted && (
-                <div className="mb-6 p-4 bg-green-500/20 border border-green-500/50 rounded-lg text-green-300">
+                <div className="mb-6 p-4 bg-green-500/20 border border-green-500/50 rounded-lg text-green-300 flex items-center gap-2">
+                  <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
+                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
                   {content[language].success}
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              {error && (
+                <div className="mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-red-300 flex items-start gap-2">
+                  <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                  <div>{error}</div>
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    {content[language].form.name}
+                    {content[language].form.name}:
                   </label>
                   <input
                     type="text"
@@ -132,13 +291,17 @@ export function Contact() {
                     onChange={handleChange}
                     placeholder={content[language].form.namePlaceholder}
                     required
+                    maxLength={30}
                     className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-white"
                   />
+                  <p className="text-xs text-gray-500 mt-1">
+                    {formData.name.length}/30 {language === 'az' ? 'simvol' : 'characters'}
+                  </p>
                 </div>
 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium mb-2">
-                    {content[language].form.email}
+                    {content[language].form.email}:
                   </label>
                   <input
                     type="email"
@@ -153,40 +316,53 @@ export function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="company" className="block text-sm font-medium mb-2">
-                    {content[language].form.company}
+                  <label htmlFor="phone_number" className="block text-sm font-medium mb-2">
+                    {content[language].form.phone}:
                   </label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    placeholder={content[language].form.companyPlaceholder}
-                    required
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-white"
-                  />
+                  <div className="relative">
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+                      +994
+                    </div>
+                    <input
+                      type="tel"
+                      id="phone_number"
+                      name="phone_number"
+                      value={formData.phone_number}
+                      onChange={handlePhoneChange}
+                      placeholder={content[language].form.phonePlaceholder}
+                      required
+                      maxLength={12}
+                      className="w-full pl-16 pr-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-white"
+                    />
+                  </div>
+                  <p className="text-xs text-gray-500 mt-1">
+                    +994 {formData.phone_number || 'XX XXX XX XX'}
+                  </p>
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                    {content[language].form.subject}
+                  <label htmlFor="appeal" className="block text-sm font-medium mb-2">
+                    {content[language].form.appeal}:
                   </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    placeholder={content[language].form.subjectPlaceholder}
+                  <select
+                    id="appeal"
+                    name="appeal"
+                    value={formData.appeal}
+                    onChange={(e) => setFormData({ ...formData, appeal: parseInt(e.target.value) })}
                     required
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-white"
-                  />
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-white appearance-none cursor-pointer"
+                  >
+                    {content[language].form.appealOptions.map((option) => (
+                      <option key={option.value} value={option.value} className="bg-gray-900 text-white">
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium mb-2">
-                    {content[language].form.message}
+                    {content[language].form.message}:
                   </label>
                   <textarea
                     id="message"
@@ -195,17 +371,31 @@ export function Contact() {
                     onChange={handleChange}
                     placeholder={content[language].form.messagePlaceholder}
                     required
+                    maxLength={2000}
                     rows={6}
                     className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-purple-500 transition-colors resize-none text-white"
                   />
+                  <p className="text-xs text-gray-500 mt-1">
+                    {formData.message.length}/2000 {language === 'az' ? 'simvol' : 'characters'}
+                  </p>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg transition-colors"
+                  disabled={loading || submitted}
+                  className="w-full flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-700 disabled:bg-purple-600/50 disabled:cursor-not-allowed text-white px-8 py-4 rounded-lg transition-colors"
                 >
-                  {content[language].form.send}
-                  <Send className="w-5 h-5" />
+                  {loading ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      {content[language].form.sending}
+                    </>
+                  ) : (
+                    <>
+                      {content[language].form.send}
+                      <Send className="w-5 h-5" />
+                    </>
+                  )}
                 </button>
               </form>
             </div>
