@@ -16,13 +16,18 @@ export function GoogleAnalytics() {
 
   // Track page views on route change
   useEffect(() => {
-    // Wait for gtag to be available (from HTML script)
+    // Check if gtag is available (loaded from HTML script)
     if (typeof window !== 'undefined' && window.gtag && GA_MEASUREMENT_ID) {
-      window.gtag('config', GA_MEASUREMENT_ID, {
-        page_path: location.pathname,
-        page_title: document.title,
-        page_location: window.location.href,
-      });
+      try {
+        // Send page_view event on route change
+        window.gtag('event', 'page_view', {
+          page_path: location.pathname,
+          page_title: document.title,
+          page_location: window.location.href,
+        });
+      } catch (error) {
+        console.error('Google Analytics Page View Error:', error);
+      }
     }
   }, [location.pathname, location.search]);
 
