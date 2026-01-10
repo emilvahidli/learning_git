@@ -4,6 +4,7 @@ import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import { Head } from './components/Head';
 import { FaviconUpdater } from './components/FaviconUpdater';
+import { GoogleAnalytics } from './components/GoogleAnalytics';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Services } from './pages/Services';
@@ -32,6 +33,7 @@ function LanguageRoute({ children }: { children: ReactNode }) {
 function PageWrapper({ children }: { children: ReactNode }) {
   return (
     <>
+      <GoogleAnalytics />
       <FaviconUpdater />
       <Head />
       <Navigation />
