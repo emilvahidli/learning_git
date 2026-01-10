@@ -1,14 +1,24 @@
 // API Configuration
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+// Production-da eyni domain-də /api path istifadə edirik (Nginx reverse proxy)
+// Development-da localhost:3000 istifadə edirik
+const API_BASE_URL = import.meta.env.PROD 
+  ? (import.meta.env.VITE_API_URL || '') // Production: empty string (same domain) və ya /api
+  : (import.meta.env.VITE_API_URL || 'http://localhost:3000'); // Development: localhost
 
 export const api = {
   baseURL: API_BASE_URL,
   
   // Appeal endpoint
-  appeal: `${API_BASE_URL}/api/appeal`,
+  // Production-da: /api/appeal (Nginx /api -> localhost:3000)
+  // Development-da: http://localhost:3000/api/appeal
+  appeal: import.meta.env.PROD 
+    ? '/api/appeal' 
+    : `${API_BASE_URL}/api/appeal`,
   
   // Health check
-  health: `${API_BASE_URL}/health`,
+  health: import.meta.env.PROD 
+    ? '/health' 
+    : `${API_BASE_URL}/health`,
 };
 
 export default api;
