@@ -1,4 +1,5 @@
 import pool from '../config/database.js';
+import { sendTelegramNotification } from '../services/telegramService.js';
 
 export const createAppeal = async (req, res) => {
   const client = await pool.connect();
@@ -15,6 +16,12 @@ export const createAppeal = async (req, res) => {
     );
 
     const newAppeal = result.rows[0];
+
+    // Send Telegram notification (async, don't wait - don't block response)
+    sendTelegramNotification(newAppeal).catch(error => {
+      console.error('Failed to send Telegram notification:', error);
+      // Don't fail the request if Telegram fails
+    });
 
     res.status(201).json({
       success: true,
