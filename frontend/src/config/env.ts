@@ -10,8 +10,8 @@ export const config = {
   },
   env: import.meta.env.VITE_ENV || 'development',
   contact: {
-    email: import.meta.env.VITE_CONTACT_EMAIL || 'hello@proep.az',
-    phone: import.meta.env.VITE_CONTACT_PHONE || '+994501234567',
+    email: import.meta.env.VITE_CONTACT_EMAIL || 'info@proep.az',
+    phone: import.meta.env.VITE_CONTACT_PHONE || '+994502081108',
   },
   analytics: {
     gaMeasurementId: import.meta.env.VITE_GA_MEASUREMENT_ID || '',

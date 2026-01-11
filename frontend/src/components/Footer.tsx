@@ -13,7 +13,7 @@ export function Footer() {
       email: 'E-poçt',
       phone: 'Telefon',
       address: 'Ünvan',
-      addressText: 'Bakı şəhəri, Nizami küç. 203B',
+      addressText: 'Caspian Plaza, Cəfər Cabbarlı, Bakı, Yasamal, AZ1065',
       rights: '© 2026 proep.az — Pro End Point',
       menuItems: [
         { path: '/home', label: 'Ana Səhifə' },
@@ -31,7 +31,7 @@ export function Footer() {
       email: 'Email',
       phone: 'Phone',
       address: 'Address',
-      addressText: 'Baku, Nizami Street 203B',
+      addressText: 'Caspian Plaza, Jafar Jabbarli, Baku, Yasamal, AZ1065',
       rights: '© 2026 proep.az — Pro End Point',
       menuItems: [
         { path: '/home', label: 'Home' },
@@ -111,15 +111,15 @@ export function Footer() {
               <li>
                 <span className="text-white">{content[language].email}:</span>
                 <br />
-                <a href="mailto:hello@proep.az" className="hover:text-blue-400 transition-colors">
-                  hello@proep.az
+                <a href="mailto:info@proep.az" className="hover:text-blue-400 transition-colors">
+                  info@proep.az
                 </a>
               </li>
               <li>
                 <span className="text-white">{content[language].phone}:</span>
                 <br />
-                <a href="tel:+994501234567" className="hover:text-blue-400 transition-colors">
-                  +994 50 123 45 67
+                <a href="tel:+994502081108" className="hover:text-blue-400 transition-colors">
+                  +994 50 208 11 08
                 </a>
               </li>
               <li>

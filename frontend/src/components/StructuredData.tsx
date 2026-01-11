@@ -104,9 +104,10 @@ export function StructuredData() {
       address: {
         '@type': 'PostalAddress',
         addressLocality: language === 'az' ? 'Bakı' : 'Baku',
-        addressRegion: 'Baku',
+        addressRegion: 'Yasamal',
         addressCountry: 'AZ',
-        streetAddress: language === 'az' ? 'Nizami küç. 203B' : 'Nizami Street 203B',
+        postalCode: 'AZ1065',
+        streetAddress: language === 'az' ? 'Caspian Plaza, Cəfər Cabbarlı' : 'Caspian Plaza, Jafar Jabbarli',
       },
       contactPoint: {
         '@type': 'ContactPoint',
