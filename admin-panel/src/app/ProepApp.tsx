@@ -1,4 +1,4 @@
-import { AuthProvider, useAuth } from '../../contexts/AuthContext';
+import { AuthProvider, useAuth } from '../contexts/AuthContext';
 import { Login } from './screens/ProepLogin';
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
