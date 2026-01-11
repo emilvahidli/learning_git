@@ -49,11 +49,11 @@ export function Contact() {
       info: {
         title: 'Əlaqə Məlumatları',
         address: 'Ünvan',
-        addressText: 'Bakı şəhəri, Nizami küç. 203B',
+        addressText: 'Caspian Plaza, Cəfər Cabbarlı, Bakı, Yasamal, AZ1065',
         email: 'E-poçt',
-        emailText: 'hello@proep.az',
+        emailText: 'info@proep.az',
         phone: 'Telefon',
-        phoneText: '+994 50 123 45 67',
+        phoneText: '+994 50 208 11 08',
         hours: 'İş saatları',
         hoursText: 'B.e – Cümə | 09:00 – 18:00',
       },
@@ -92,11 +92,11 @@ export function Contact() {
       info: {
         title: 'Contact Information',
         address: 'Address',
-        addressText: 'Baku, Nizami Street 203B',
+        addressText: 'Caspian Plaza, Jafar Jabbarli, Baku, Yasamal, AZ1065',
         email: 'Email',
-        emailText: 'hello@proep.az',
+        emailText: 'info@proep.az',
         phone: 'Phone',
-        phoneText: '+994 50 123 45 67',
+        phoneText: '+994 50 208 11 08',
         hours: 'Working Hours',
         hoursText: 'Mon – Fri | 09:00 – 18:00',
       },
@@ -421,7 +421,7 @@ export function Contact() {
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1">{content[language].info.email}</h3>
-                    <a href="mailto:hello@proep.az" className="text-gray-400 hover:text-purple-400 transition-colors">
+                    <a href="mailto:info@proep.az" className="text-gray-400 hover:text-purple-400 transition-colors">
                       {content[language].info.emailText}
                     </a>
                   </div>
@@ -433,7 +433,7 @@ export function Contact() {
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1">{content[language].info.phone}</h3>
-                    <a href="tel:+994501234567" className="text-gray-400 hover:text-purple-400 transition-colors">
+                    <a href="tel:+994502081108" className="text-gray-400 hover:text-purple-400 transition-colors">
                       {content[language].info.phoneText}
                     </a>
                   </div>
@@ -450,11 +450,28 @@ export function Contact() {
                 </div>
               </div>
 
-              {/* Map Placeholder */}
-              <div className="mt-8 h-64 bg-gradient-to-br from-purple-600/10 to-blue-600/10 rounded-2xl border border-white/10 flex items-center justify-center">
-                <p className="text-gray-400">
-                  {language === 'az' ? 'Xəritə' : 'Map'}
-                </p>
+              {/* Google Map */}
+              <div className="mt-8">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3039.1607988851597!2d49.84669431534934!3d40.38199897936631!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d9a4e3e1111%3A0x7f6e7b9e9e9e9e9e!2sCaspian%20Plaza!5e0!3m2!1sen!2saz!4v1641234567890!5m2!1sen!2saz"
+                  width="100%"
+                  height="300"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="rounded-2xl border border-white/10"
+                  title={language === 'az' ? 'Proep Ofis Xəritəsi' : 'Proep Office Map'}
+                ></iframe>
+                <a
+                  href="https://maps.app.goo.gl/Hhjwf6R7wFRfdtjW8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 mt-4 text-purple-400 hover:text-purple-300 transition-colors"
+                >
+                  <MapPin className="w-4 h-4" />
+                  {language === 'az' ? 'Google Maps-də Aç' : 'Open in Google Maps'}
+                </a>
               </div>
             </div>
           </div>
