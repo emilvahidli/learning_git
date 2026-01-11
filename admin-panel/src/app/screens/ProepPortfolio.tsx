@@ -12,8 +12,15 @@ interface Project {
   title_az: string;
   title_en: string;
   slug: string;
+  short_description_az?: string;
+  short_description_en?: string;
+  detailed_description_az?: string;
+  detailed_description_en?: string;
   status: string;
   project_url?: string;
+  technologies?: string[];
+  features_az?: string[];
+  features_en?: string[];
 }
 
 export function Portfolio() {
@@ -77,15 +84,15 @@ export function Portfolio() {
       title_az: project.title_az,
       title_en: project.title_en,
       slug: project.slug,
-      short_description_az: '',
-      short_description_en: '',
-      detailed_description_az: '',
-      detailed_description_en: '',
+      short_description_az: project.short_description_az || '',
+      short_description_en: project.short_description_en || '',
+      detailed_description_az: project.detailed_description_az || '',
+      detailed_description_en: project.detailed_description_en || '',
       project_url: project.project_url || '',
       status: project.status,
-      technologies: [],
-      features_az: [],
-      features_en: [],
+      technologies: project.technologies || [],
+      features_az: project.features_az || [],
+      features_en: project.features_en || [],
     });
     setShowModal(true);
   };
@@ -300,6 +307,40 @@ export function Portfolio() {
                 onChange={(e) => setFormData({ ...formData, project_url: e.target.value })}
                 type="url"
               />
+
+              <Textarea
+                label="Texnologiyalar (hər biri yeni sətirdə)"
+                value={formData.technologies.join('\n')}
+                onChange={(e) => setFormData({ 
+                  ...formData, 
+                  technologies: e.target.value.split('\n').filter(t => t.trim()) 
+                })}
+                rows={4}
+                placeholder="React&#10;Node.js&#10;PostgreSQL"
+              />
+
+              <div className="grid grid-cols-2 gap-4">
+                <Textarea
+                  label="Xüsusiyyətlər (AZ) - hər biri yeni sətirdə"
+                  value={formData.features_az.join('\n')}
+                  onChange={(e) => setFormData({ 
+                    ...formData, 
+                    features_az: e.target.value.split('\n').filter(f => f.trim()) 
+                  })}
+                  rows={5}
+                  placeholder="Responsive dizayn&#10;Real-time updates&#10;API inteqrasiyası"
+                />
+                <Textarea
+                  label="Xüsusiyyətlər (EN) - hər biri yeni sətirdə"
+                  value={formData.features_en.join('\n')}
+                  onChange={(e) => setFormData({ 
+                    ...formData, 
+                    features_en: e.target.value.split('\n').filter(f => f.trim()) 
+                  })}
+                  rows={5}
+                  placeholder="Responsive design&#10;Real-time updates&#10;API integration"
+                />
+              </div>
 
               <Select
                 label="Status"
