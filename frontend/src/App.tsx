@@ -10,6 +10,7 @@ import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Services } from './pages/Services';
 import { Blog } from './pages/Blog';
+import { BlogDetail } from './pages/BlogDetail';
 import { Portfolio } from './pages/Portfolio';
 import { Contact } from './pages/Contact';
 import { useEffect } from 'react';
@@ -94,6 +95,18 @@ function AppRoutes() {
           <LanguageRoute>
             <PageWrapper>
               <Blog />
+            </PageWrapper>
+          </LanguageRoute>
+        }
+      />
+      
+      {/* Blog detail route */}
+      <Route
+        path="/blog/:postId/:lang"
+        element={
+          <LanguageRoute>
+            <PageWrapper>
+              <BlogDetail />
             </PageWrapper>
           </LanguageRoute>
         }

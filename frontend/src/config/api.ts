@@ -19,6 +19,16 @@ export const api = {
   health: import.meta.env.PROD 
     ? '/health' 
     : `${API_BASE_URL}/health`,
+  
+  // Public API endpoints
+  public: {
+    blog: import.meta.env.PROD
+      ? '/api/public/blog'
+      : `${API_BASE_URL}/api/public/blog`,
+    portfolio: import.meta.env.PROD
+      ? '/api/public/portfolio'
+      : `${API_BASE_URL}/api/public/portfolio`,
+  },
 };
 
 export default api;

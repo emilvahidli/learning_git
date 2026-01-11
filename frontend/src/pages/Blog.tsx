@@ -1,78 +1,72 @@
+import { useEffect, useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Calendar, User, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { api } from '../config/api';
+
+interface BlogPost {
+  id: number;
+  post_id: string;
+  title: string;
+  slug: string;
+  short_description?: string;
+  content: string;
+  category?: string;
+  published_at: string;
+  author_full_name?: string;
+  author_name?: string;
+  language: string;
+  views: number;
+}
 
 export function Blog() {
   const { language } = useLanguage();
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadPosts();
+  }, [language]);
+
+  const loadPosts = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(`${api.public.blog}?language=${language}&limit=20`);
+      const data = await response.json();
+      
+      if (data.success) {
+        setPosts(data.data);
+      }
+    } catch (error) {
+      console.error('Blog load error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const content = {
     az: {
       title: 'Blog',
       subtitle: 'AI texnologiyaları və rəqəmsal transformasiya haqqında məqalələr',
-      posts: [
-        {
-          title: 'Süni İntellekt Biznesinizi Necə Dəyişə Bilər',
-          excerpt: 'AI texnologiyalarının biznes proseslərinə inteqrasiyası və onun gətirdiyi imkanlar haqqında ətraflı baxış.',
-          date: '15 Yanvar 2026',
-          author: 'PROEP Team',
-          category: 'AI & Texnologiya',
-        },
-        {
-          title: 'Backend Arxitekturasının Əhəmiyyəti',
-          excerpt: 'Güclü backend sisteminin qurulması və miqyaslana bilən arxitektura prinsipləri.',
-          date: '10 Yanvar 2026',
-          author: 'PROEP Team',
-          category: 'Development',
-        },
-        {
-          title: 'API Təhlükəsizliyi: Best Practices',
-          excerpt: 'Modern API sistemlərinin təhlükəsizliyinin təmin edilməsi üçün ən yaxşı təcrübələr və tövsiyələr.',
-          date: '5 Yanvar 2026',
-          author: 'PROEP Team',
-          category: 'Təhlükəsizlik',
-        },
-        {
-          title: 'Rəqəmsal Transformasiya Yol Xəritəsi',
-          excerpt: 'Biznesinizi rəqəmsal dünyaya köçürmək üçün addım-addım təlimat və strategiyalar.',
-          date: '1 Yanvar 2026',
-          author: 'PROEP Team',
-          category: 'Biznes',
-        },
-      ],
+      readMore: 'Oxu',
+      noPosts: 'Heç bir məqalə tapılmadı',
+      loading: 'Yüklənir...',
     },
     en: {
       title: 'Blog',
       subtitle: 'Articles about AI technologies and digital transformation',
-      posts: [
-        {
-          title: 'How Artificial Intelligence Can Transform Your Business',
-          excerpt: 'A detailed look at integrating AI technologies into business processes and the opportunities it brings.',
-          date: 'January 15, 2026',
-          author: 'PROEP Team',
-          category: 'AI & Technology',
-        },
-        {
-          title: 'The Importance of Backend Architecture',
-          excerpt: 'Building a powerful backend system and principles of scalable architecture.',
-          date: 'January 10, 2026',
-          author: 'PROEP Team',
-          category: 'Development',
-        },
-        {
-          title: 'API Security: Best Practices',
-          excerpt: 'Best practices and recommendations for ensuring security of modern API systems.',
-          date: 'January 5, 2026',
-          author: 'PROEP Team',
-          category: 'Security',
-        },
-        {
-          title: 'Digital Transformation Roadmap',
-          excerpt: 'Step-by-step guide and strategies for transitioning your business to the digital world.',
-          date: 'January 1, 2026',
-          author: 'PROEP Team',
-          category: 'Business',
-        },
-      ],
+      readMore: 'Read',
+      noPosts: 'No articles found',
+      loading: 'Loading...',
     },
+  };
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    if (language === 'az') {
+      return date.toLocaleDateString('az-AZ', { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   };
 
   return (
@@ -89,42 +83,63 @@ export function Blog() {
       {/* Blog Posts */}
       <section className="py-16 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {content[language].posts.map((post, index) => (
-              <article
-                key={index}
-                className="bg-gradient-to-br from-white/5 to-transparent backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:border-purple-500/50 transition-all duration-300 hover:transform hover:scale-[1.02] cursor-pointer"
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <span className="text-sm text-purple-400 font-medium">{post.category}</span>
-                </div>
-                
-                <h2 className="text-2xl font-bold mb-4 hover:text-purple-400 transition-colors">
-                  {post.title}
-                </h2>
-                
-                <p className="text-gray-300 mb-6 leading-relaxed">{post.excerpt}</p>
-                
-                <div className="flex items-center justify-between pt-6 border-t border-white/10">
-                  <div className="flex items-center gap-4 text-sm text-gray-400">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4" />
-                      <span>{post.date}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <User className="w-4 h-4" />
-                      <span>{post.author}</span>
-                    </div>
+          {loading ? (
+            <div className="flex items-center justify-center h-64">
+              <div className="w-12 h-12 border-4 border-purple-600/30 border-t-purple-600 rounded-full animate-spin"></div>
+            </div>
+          ) : posts.length === 0 ? (
+            <div className="text-center py-20">
+              <p className="text-gray-400 text-xl">{content[language].noPosts}</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {posts.map((post) => (
+                <article
+                  key={post.id}
+                  className="bg-gradient-to-br from-white/5 to-transparent backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:border-purple-500/50 transition-all duration-300 hover:transform hover:scale-[1.02]"
+                >
+                  <div className="flex items-center gap-4 mb-4">
+                    {post.category && (
+                      <span className="text-sm text-purple-400 font-medium">{post.category}</span>
+                    )}
                   </div>
                   
-                  <button className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors">
-                    {language === 'az' ? 'Oxu' : 'Read'}
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </article>
-            ))}
-          </div>
+                  <h2 className="text-2xl font-bold mb-4 hover:text-purple-400 transition-colors">
+                    <Link to={`/blog/${post.post_id}/${language}`} className="block">
+                      {post.title}
+                    </Link>
+                  </h2>
+                  
+                  <p className="text-gray-300 mb-6 leading-relaxed">
+                    {post.short_description || post.content.substring(0, 150) + '...'}
+                  </p>
+                  
+                  <div className="flex items-center justify-between pt-6 border-t border-white/10">
+                    <div className="flex items-center gap-4 text-sm text-gray-400">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4" />
+                        <span>{formatDate(post.published_at)}</span>
+                      </div>
+                      {(post.author_full_name || post.author_name) && (
+                        <div className="flex items-center gap-2">
+                          <User className="w-4 h-4" />
+                          <span>{post.author_full_name || post.author_name}</span>
+                        </div>
+                      )}
+                    </div>
+                    
+                    <Link 
+                      to={`/blog/${post.post_id}/${language}`}
+                      className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors"
+                    >
+                      {content[language].readMore}
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </div>

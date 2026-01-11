@@ -8,7 +8,12 @@ const usersModel = {
    * Bütün istifadəçiləri əldə et
    */
   async getAll(filters = {}) {
-    let query = `SELECT * FROM admin_frontend_users WHERE 1=1`;
+    let query = `
+      SELECT id, username, full_name, email, phone_number, company, position, 
+             status, created_at, updated_at, can_delete
+      FROM admin_frontend_users 
+      WHERE 1=1
+    `;
     const params = [];
     let paramIndex = 1;
 
@@ -45,7 +50,12 @@ const usersModel = {
    * ID-yə görə istifadəçi tap
    */
   async getById(id) {
-    const query = `SELECT * FROM admin_frontend_users WHERE id = $1`;
+    const query = `
+      SELECT id, username, full_name, email, phone_number, company, position, 
+             status, created_at, updated_at, can_delete
+      FROM admin_frontend_users 
+      WHERE id = $1
+    `;
     const result = await pool.query(query, [id]);
     return result.rows[0];
   },
@@ -54,8 +64,27 @@ const usersModel = {
    * Email-ə görə istifadəçi tap
    */
   async getByEmail(email) {
-    const query = `SELECT * FROM admin_frontend_users WHERE email = $1`;
+    const query = `
+      SELECT id, username, full_name, email, phone_number, company, position, 
+             status, created_at, updated_at, can_delete
+      FROM admin_frontend_users 
+      WHERE email = $1
+    `;
     const result = await pool.query(query, [email]);
+    return result.rows[0];
+  },
+
+  /**
+   * Username-ə görə istifadəçi tap
+   */
+  async getByUsername(username) {
+    const query = `
+      SELECT id, username, full_name, email, phone_number, company, position, 
+             status, created_at, updated_at, can_delete
+      FROM admin_frontend_users 
+      WHERE username = $1
+    `;
+    const result = await pool.query(query, [username]);
     return result.rows[0];
   },
 
@@ -65,18 +94,21 @@ const usersModel = {
   async create(data) {
     const query = `
       INSERT INTO admin_frontend_users 
-      (full_name, email, phone_number, company, position, status, notes)
-      VALUES ($1, $2, $3, $4, $5, $6, $7)
-      RETURNING *
+      (username, password_hash, full_name, email, phone_number, company, position, status, notes, can_delete)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+      RETURNING id, username, full_name, email, phone_number, company, position, status, created_at, can_delete
     `;
     const result = await pool.query(query, [
+      data.username,
+      data.password_hash || null,
       data.full_name,
       data.email,
       data.phone_number || null,
       data.company || null,
       data.position || null,
       data.status || 'active',
-      data.notes || null
+      data.notes || null,
+      data.can_delete !== undefined ? data.can_delete : true
     ]);
     return result.rows[0];
   },
@@ -88,18 +120,23 @@ const usersModel = {
     const query = `
       UPDATE admin_frontend_users
       SET 
-        full_name = COALESCE($1, full_name),
-        email = COALESCE($2, email),
-        phone_number = COALESCE($3, phone_number),
-        company = COALESCE($4, company),
-        position = COALESCE($5, position),
-        status = COALESCE($6, status),
-        notes = COALESCE($7, notes),
+        username = COALESCE($1, username),
+        password_hash = COALESCE(NULLIF($2, ''), password_hash),
+        full_name = COALESCE($3, full_name),
+        email = COALESCE($4, email),
+        phone_number = COALESCE($5, phone_number),
+        company = COALESCE($6, company),
+        position = COALESCE($7, position),
+        status = COALESCE($8, status),
+        notes = COALESCE($9, notes),
+        can_delete = COALESCE($10, can_delete),
         updated_at = CURRENT_TIMESTAMP
-      WHERE id = $8
-      RETURNING *
+      WHERE id = $11
+      RETURNING id, username, full_name, email, phone_number, company, position, status, created_at, can_delete
     `;
     const result = await pool.query(query, [
+      data.username,
+      data.password_hash,
       data.full_name,
       data.email,
       data.phone_number,
@@ -107,6 +144,7 @@ const usersModel = {
       data.position,
       data.status,
       data.notes,
+      data.can_delete,
       id
     ]);
     return result.rows[0];

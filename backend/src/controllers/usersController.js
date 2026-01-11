@@ -1,4 +1,5 @@
 import usersModel from '../models/usersModel.js';
+import { hashPassword } from '../utils/auth.js';
 
 /**
  * Bütün istifadəçiləri əldə et
@@ -66,13 +67,22 @@ export async function getUser(req, res) {
  */
 export async function createUser(req, res) {
   try {
-    const { full_name, email, phone_number, company, position, status, notes } = req.body;
+    const { username, password, full_name, email, phone_number, company, position, status, can_delete } = req.body;
 
     // Validation
-    if (!full_name || !email) {
+    if (!username || !full_name || !email) {
       return res.status(400).json({
         success: false,
-        message: 'Ad və email tələb olunur'
+        message: 'Username, ad və email tələb olunur'
+      });
+    }
+
+    // Username-in mövcudluğunu yoxla
+    const existingByUsername = await usersModel.getByUsername?.(username);
+    if (existingByUsername) {
+      return res.status(400).json({
+        success: false,
+        message: 'Bu username artıq mövcuddur'
       });
     }
 
@@ -85,14 +95,19 @@ export async function createUser(req, res) {
       });
     }
 
+    // Şifrəni hash-lə
+    const passwordHash = password ? await hashPassword(password) : null;
+
     const user = await usersModel.create({
+      username,
+      password_hash: passwordHash,
       full_name,
       email,
       phone_number,
       company,
       position,
-      status,
-      notes
+      status: status || 'active',
+      can_delete: can_delete !== undefined ? can_delete : true
     });
 
     return res.status(201).json({
@@ -104,7 +119,7 @@ export async function createUser(req, res) {
     console.error('Create user error:', error);
     return res.status(500).json({
       success: false,
-      message: 'Server xətası'
+      message: error.message || 'Server xətası'
     });
   }
 }
@@ -115,7 +130,18 @@ export async function createUser(req, res) {
 export async function updateUser(req, res) {
   try {
     const { id } = req.params;
-    const { full_name, email, phone_number, company, position, status, notes } = req.body;
+    const { username, password, full_name, email, phone_number, company, position, status, can_delete } = req.body;
+
+    // Username dəyişirsə, mövcudluğunu yoxla
+    if (username) {
+      const existingByUsername = await usersModel.getByUsername(username);
+      if (existingByUsername && existingByUsername.id !== parseInt(id)) {
+        return res.status(400).json({
+          success: false,
+          message: 'Bu username artıq mövcuddur'
+        });
+      }
+    }
 
     // Email dəyişirsə, mövcudluğunu yoxla
     if (email) {
@@ -128,14 +154,19 @@ export async function updateUser(req, res) {
       }
     }
 
+    // Şifrəni hash-lə (əgər verilibsə)
+    const passwordHash = password ? await hashPassword(password) : undefined;
+
     const user = await usersModel.update(id, {
+      username,
+      password_hash: passwordHash,
       full_name,
       email,
       phone_number,
       company,
       position,
       status,
-      notes
+      can_delete
     });
 
     if (!user) {
@@ -154,7 +185,7 @@ export async function updateUser(req, res) {
     console.error('Update user error:', error);
     return res.status(500).json({
       success: false,
-      message: 'Server xətası'
+      message: error.message || 'Server xətası'
     });
   }
 }
@@ -165,6 +196,22 @@ export async function updateUser(req, res) {
 export async function deleteUser(req, res) {
   try {
     const { id } = req.params;
+
+    // İstifadəçini tap və can_delete yoxla
+    const user = await usersModel.getById(id);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'İstifadəçi tapılmadı'
+      });
+    }
+
+    if (!user.can_delete) {
+      return res.status(403).json({
+        success: false,
+        message: 'Bu istifadəçini silmək üçün icazəniz yoxdur'
+      });
+    }
 
     await usersModel.delete(id);
 
