@@ -58,7 +58,8 @@ export function BlogDetail() {
     }
   };
 
-  const formatDate = (dateString: string) => {
+  const formatDate = (dateString: string | null) => {
+    if (!dateString) return language === 'az' ? 'Tarix yoxdur' : 'No date';
     const date = new Date(dateString);
     if (language === 'az') {
       return date.toLocaleDateString('az-AZ', { year: 'numeric', month: 'long', day: 'numeric' });
