@@ -73,6 +73,20 @@ const blogModel = {
   },
 
   /**
+   * post_id-yə görə post tap
+   */
+  async getByPostId(postId) {
+    const query = `
+      SELECT b.*, a.username as author_name, a.full_name as author_full_name
+      FROM admin_blog_posts b
+      LEFT JOIN admin_users a ON b.author_id = a.id
+      WHERE b.post_id = $1
+    `;
+    const result = await pool.query(query, [postId]);
+    return result.rows[0];
+  },
+
+  /**
    * Slug-a görə post tap
    */
   async getBySlug(slug) {

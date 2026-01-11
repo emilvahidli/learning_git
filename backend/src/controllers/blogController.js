@@ -41,7 +41,13 @@ export async function getPost(req, res) {
   try {
     const { id } = req.params;
     
-    const post = await blogModel.getById(id);
+    // Check if id is post_id (6 digits) or regular id
+    let post;
+    if (/^\d{6}$/.test(id)) {
+      post = await blogModel.getByPostId(id);
+    } else {
+      post = await blogModel.getById(id);
+    }
 
     if (!post) {
       return res.status(404).json({

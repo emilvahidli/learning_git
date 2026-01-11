@@ -2,10 +2,11 @@ import { AuthProvider, useAuth } from '../contexts/AuthContext';
 import { Login } from './screens/ProepLogin';
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
-import { Dashboard } from './screens/Dashboard';
-import { Users } from './screens/Users';
-import { Blog } from './screens/Blog';
-import { Messages } from './screens/Messages';
+import { Dashboard } from './screens/ProepDashboard';
+import { Users } from './screens/ProepUsers';
+import { Blog } from './screens/ProepBlog';
+import { Messages } from './screens/ProepMessages';
+import { Portfolio } from './screens/ProepPortfolio';
 import { useState } from 'react';
 
 function AppContent() {
@@ -37,6 +38,8 @@ function AppContent() {
         return <Blog />;
       case 'messages':
         return <Messages />;
+      case 'portfolio':
+        return <Portfolio />;
       default:
         return <Dashboard />;
     }

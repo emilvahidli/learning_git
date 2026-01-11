@@ -31,7 +31,7 @@ router.get('/categories', getCategories);
 
 /**
  * @route   GET /api/admin/blog/:id
- * @desc    Bir post əldə et
+ * @desc    Bir post əldə et (ID və ya post_id)
  * @access  Private
  */
 router.get('/:id', getPost);

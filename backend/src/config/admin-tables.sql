@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS admin_frontend_users (
 -- =============================================
 CREATE TABLE IF NOT EXISTS admin_blog_posts (
     id SERIAL PRIMARY KEY,
+    post_id VARCHAR(6) UNIQUE NOT NULL DEFAULT LPAD(CAST(NEXTVAL('blog_post_id_seq') AS TEXT), 6, '0'),
     title VARCHAR(200) NOT NULL,
     slug VARCHAR(250) UNIQUE NOT NULL,
     short_description TEXT,
@@ -67,6 +68,9 @@ CREATE TABLE IF NOT EXISTS admin_blog_posts (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Sequence for blog post IDs
+CREATE SEQUENCE IF NOT EXISTS blog_post_id_seq START 100000;
 
 -- =============================================
 -- BLOG CATEGORIES

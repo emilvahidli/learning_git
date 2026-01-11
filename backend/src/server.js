@@ -7,6 +7,7 @@ import messagesRoutes from './routes/messagesRoutes.js';
 import usersRoutes from './routes/usersRoutes.js';
 import blogRoutes from './routes/blogRoutes.js';
 import portfolioRoutes from './routes/portfolioRoutes.js';
+import publicRoutes from './routes/publicRoutes.js';
 import pool from './config/database.js';
 
 dotenv.config();
@@ -53,6 +54,7 @@ app.get('/health', async (req, res) => {
 // API Routes
 app.use('/api/appeal', appealRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/public', publicRoutes);
 
 // Admin API Routes (protected)
 app.use('/api/admin/messages', messagesRoutes);
