@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import appealRoutes from './routes/appealRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 import pool from './config/database.js';
 
 dotenv.config();
@@ -47,6 +48,7 @@ app.get('/health', async (req, res) => {
 
 // API Routes
 app.use('/api/appeal', appealRoutes);
+app.use('/api/auth', authRoutes);
 
 // 404 handler
 app.use((req, res) => {
@@ -72,6 +74,7 @@ app.listen(PORT, () => {
   console.log(`📍 Environment: ${process.env.NODE_ENV || 'development'}`);
   console.log(`🔗 Health check: http://localhost:${PORT}/health`);
   console.log(`📧 Appeal endpoint: http://localhost:${PORT}/api/appeal`);
+  console.log(`🔐 Auth endpoint: http://localhost:${PORT}/api/auth`);
 });
 
 // Graceful shutdown
