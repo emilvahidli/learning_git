@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Eye, EyeOff, Loader2, Shield } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
-import { Input } from '../components/ProepInput';
-import { Button } from '../components/ProepButton';
+import { useAuth } from '../../contexts/AuthContext';
+import { Input } from '../../components/ProepInput';
+import { Button } from '../../components/ProepButton';
 
 export function Login() {
   const { login } = useAuth();
