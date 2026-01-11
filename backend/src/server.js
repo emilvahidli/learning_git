@@ -3,6 +3,10 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import appealRoutes from './routes/appealRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import messagesRoutes from './routes/messagesRoutes.js';
+import usersRoutes from './routes/usersRoutes.js';
+import blogRoutes from './routes/blogRoutes.js';
+import portfolioRoutes from './routes/portfolioRoutes.js';
 import pool from './config/database.js';
 
 dotenv.config();
@@ -50,6 +54,12 @@ app.get('/health', async (req, res) => {
 app.use('/api/appeal', appealRoutes);
 app.use('/api/auth', authRoutes);
 
+// Admin API Routes (protected)
+app.use('/api/admin/messages', messagesRoutes);
+app.use('/api/admin/users', usersRoutes);
+app.use('/api/admin/blog', blogRoutes);
+app.use('/api/admin/portfolio', portfolioRoutes);
+
 // 404 handler
 app.use((req, res) => {
   res.status(404).json({
@@ -75,6 +85,11 @@ app.listen(PORT, () => {
   console.log(`🔗 Health check: http://localhost:${PORT}/health`);
   console.log(`📧 Appeal endpoint: http://localhost:${PORT}/api/appeal`);
   console.log(`🔐 Auth endpoint: http://localhost:${PORT}/api/auth`);
+  console.log(`\n📦 Admin API endpoints:`);
+  console.log(`   💌 Messages:  http://localhost:${PORT}/api/admin/messages`);
+  console.log(`   👥 Users:     http://localhost:${PORT}/api/admin/users`);
+  console.log(`   📝 Blog:      http://localhost:${PORT}/api/admin/blog`);
+  console.log(`   🎨 Portfolio: http://localhost:${PORT}/api/admin/portfolio`);
 });
 
 // Graceful shutdown

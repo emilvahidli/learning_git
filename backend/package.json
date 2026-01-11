@@ -8,7 +8,9 @@
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
     "migrate": "node src/config/migrate.js",
-    "create-admin": "node src/config/create-admin.js"
+    "create-admin": "node src/config/create-admin.js",
+    "create-tables": "node src/config/create-tables.js",
+    "seed-data": "node src/config/seed-data.js"
   },
   "keywords": ["proep", "api", "backend"],
   "author": "Proep.az",
