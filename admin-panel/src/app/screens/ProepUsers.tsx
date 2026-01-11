@@ -120,43 +120,6 @@ export function Users() {
     }
   };
 
-      if (editingUser) {
-        await apiRequest(`${api.admin.users}/${editingUser.id}`, {
-          method: 'PUT',
-          body: JSON.stringify(submitData),
-        });
-      } else {
-        await apiRequest(api.admin.users, {
-          method: 'POST',
-          body: JSON.stringify(submitData),
-        });
-      }
-      
-      await loadUsers();
-      setShowModal(false);
-    } catch (error: any) {
-      console.error('Save error:', error);
-      alert(error.message || 'Xəta baş verdi');
-    }
-  };
-
-  const handleDelete = async (id: number, canDelete: boolean) => {
-    if (!canDelete) {
-      alert('Bu istifadəçini silmək üçün icazə yoxdur');
-      return;
-    }
-    
-    if (!confirm('İstifadəçini silmək istədiyinizdən əminsiniz?')) return;
-    
-    try {
-      await apiRequest(`${api.admin.users}/${id}`, { method: 'DELETE' });
-      await loadUsers();
-    } catch (error: any) {
-      console.error('Delete error:', error);
-      alert(error.message || 'Xəta baş verdi');
-    }
-  };
-
   const filteredUsers = users.filter(user =>
     user.full_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
