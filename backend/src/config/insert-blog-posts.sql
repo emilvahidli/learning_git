@@ -1,11 +1,15 @@
 -- ============================================
--- BLOG POSTS INSERT - 10 Maraqlı Xəbər
+-- BLOG POSTS INSERT - 10 Maraqlı Xəbər (AZ + EN)
 -- ============================================
 
 -- Əvvəlcə author_id-ni tapın (admin_users table-ından)
 -- Bu nümunədə author_id = 1 götürülüb, öz author_id-nizi istifadə edin
 
--- 1. AI Texnologiyaları və Gələcək
+-- ============================================
+-- AZƏRBAYCAN DİLİNDƏ XƏBƏRLƏR
+-- ============================================
+
+-- 1. AI Texnologiyaları və Gələcək (AZ)
 INSERT INTO admin_blog_posts (
     post_id, title, slug, short_description, content, 
     category, tags, status, language, views, likes,
@@ -37,7 +41,39 @@ Gələcəkdə AI texnologiyaları daha da genişlənəcək və biznes proseslər
     1
 );
 
--- 2. Cloud Computing və Biznes
+-- 1. AI Technologies and the Future (EN)
+INSERT INTO admin_blog_posts (
+    post_id, title, slug, short_description, content, 
+    category, tags, status, language, views, likes,
+    seo_title, seo_description, seo_keywords, published_at, author_id
+) VALUES (
+    '100011',
+    'AI Technologies: The Innovation of the Future',
+    'ai-technologies-innovation-of-the-future',
+    'Artificial intelligence technologies are transforming the business world. In this article, we explore the impact of AI on modern business.',
+    'Artificial Intelligence (AI) technologies have been rapidly developing in recent years and are creating revolutionary changes in the business world. Technologies such as Machine Learning, Deep Learning, and Neural Networks are being applied in various fields.
+
+Key advantages of AI:
+- Automation and increased efficiency
+- Accurate predictions and decision-making
+- Improved customer services
+- Cost reduction
+
+In the future, AI technologies will expand even further and completely transform business processes.',
+    'Technology',
+    ARRAY['AI', 'Artificial Intelligence', 'Machine Learning', 'Innovation'],
+    'published',
+    'en',
+    0,
+    0,
+    'AI Technologies: The Innovation of the Future | Proep.az',
+    'Artificial intelligence technologies are transforming the business world. Learn about the impact of AI on modern business.',
+    'AI, artificial intelligence, machine learning, innovation, technology',
+    CURRENT_TIMESTAMP,
+    1
+);
+
+-- 2. Cloud Computing və Biznes (AZ)
 INSERT INTO admin_blog_posts (
     post_id, title, slug, short_description, content, 
     category, tags, status, language, views, likes,
@@ -69,7 +105,39 @@ AWS, Azure, Google Cloud kimi platformalar müxtəlif biznes ehtiyaclarına cava
     1
 );
 
--- 3. E-commerce və Onlayn Satış
+-- 2. Cloud Computing and Business (EN)
+INSERT INTO admin_blog_posts (
+    post_id, title, slug, short_description, content, 
+    category, tags, status, language, views, likes,
+    seo_title, seo_description, seo_keywords, published_at, author_id
+) VALUES (
+    '100012',
+    'Cloud Computing: The Foundation of Modern Business',
+    'cloud-computing-foundation-of-modern-business',
+    'Cloud computing is essential for modern business. In this article, we explore the advantages of cloud solutions.',
+    'Cloud computing is an essential technology for modern business. Cloud technologies provide companies with flexibility, scalability, and cost reduction opportunities.
+
+Key advantages of cloud solutions:
+- Reduced infrastructure costs
+- Remote work capabilities
+- Automatic backup and disaster recovery
+- Scalability
+
+Platforms like AWS, Azure, and Google Cloud meet various business needs.',
+    'Technology',
+    ARRAY['Cloud Computing', 'AWS', 'Azure', 'Business'],
+    'published',
+    'en',
+    0,
+    0,
+    'Cloud Computing: The Foundation of Modern Business | Proep.az',
+    'Cloud computing is essential for modern business. Learn about the advantages of cloud solutions.',
+    'cloud computing, AWS, Azure, cloud technologies, business',
+    CURRENT_TIMESTAMP,
+    1
+);
+
+-- 3. E-commerce və Onlayn Satış (AZ)
 INSERT INTO admin_blog_posts (
     post_id, title, slug, short_description, content, 
     category, tags, status, language, views, likes,
@@ -102,7 +170,40 @@ Müştəri təcrübəsini yaxşılaşdırmaq satışları artırır.',
     1
 );
 
--- 4. Cybersecurity və Təhlükəsizlik
+-- 3. E-commerce Strategies: Increasing Online Sales (EN)
+INSERT INTO admin_blog_posts (
+    post_id, title, slug, short_description, content, 
+    category, tags, status, language, views, likes,
+    seo_title, seo_description, seo_keywords, published_at, author_id
+) VALUES (
+    '100013',
+    'E-commerce Strategies: Increasing Online Sales',
+    'e-commerce-strategies-increasing-online-sales',
+    'A proper strategy is needed to succeed in e-commerce. In this article, we explore effective strategies.',
+    'The e-commerce sector is rapidly developing and customer shopping behaviors are changing. A proper strategy is needed to create a successful online store.
+
+Key elements of a successful e-commerce strategy:
+- User-friendly design
+- Fast loading
+- Secure payment systems
+- SEO optimization
+- Social media marketing
+
+Improving customer experience increases sales.',
+    'Business',
+    ARRAY['E-commerce', 'Online Sales', 'Marketing', 'SEO'],
+    'published',
+    'en',
+    0,
+    0,
+    'E-commerce Strategies: Increasing Online Sales | Proep.az',
+    'Effective strategies to succeed in e-commerce. Tips to increase online sales.',
+    'e-commerce, online sales, marketing, SEO, business',
+    CURRENT_TIMESTAMP,
+    1
+);
+
+-- 4. Cybersecurity və Təhlükəsizlik (AZ)
 INSERT INTO admin_blog_posts (
     post_id, title, slug, short_description, content, 
     category, tags, status, language, views, likes,
@@ -135,7 +236,40 @@ Məlumatların qorunması həm qanuni, həm də etik məsuliyyətdir.',
     1
 );
 
--- 5. Mobile App Development
+-- 4. Cybersecurity: Security in the Digital World (EN)
+INSERT INTO admin_blog_posts (
+    post_id, title, slug, short_description, content, 
+    category, tags, status, language, views, likes,
+    seo_title, seo_description, seo_keywords, published_at, author_id
+) VALUES (
+    '100014',
+    'Cybersecurity: Security in the Digital World',
+    'cybersecurity-security-in-the-digital-world',
+    'Cybersecurity is essential in the modern world. In this article, we explore key security measures.',
+    'Cybersecurity is one of the most important issues in the modern digital world. Cyber attacks are increasing and companies must take security measures.
+
+Key cybersecurity measures:
+- Strong passwords and two-factor authentication
+- Regular system updates
+- Firewall and antivirus programs
+- Employee training
+- Regular backups
+
+Protecting data is both a legal and ethical responsibility.',
+    'Security',
+    ARRAY['Cybersecurity', 'Security', 'Cyber Attacks', 'Data Protection'],
+    'published',
+    'en',
+    0,
+    0,
+    'Cybersecurity: Security in the Digital World | Proep.az',
+    'Cybersecurity is essential in the modern world. Learn about cyber security measures.',
+    'cybersecurity, security, cyber attacks, data protection',
+    CURRENT_TIMESTAMP,
+    1
+);
+
+-- 5. Mobile App Development (AZ)
 INSERT INTO admin_blog_posts (
     post_id, title, slug, short_description, content, 
     category, tags, status, language, views, likes,
@@ -168,7 +302,40 @@ Mobil tətbiq dizaynı istifadəçi təcrübəsini prioritetləşdirməlidir.',
     1
 );
 
--- 6. Digital Marketing
+-- 5. Mobile App Development: 2026 Trends (EN)
+INSERT INTO admin_blog_posts (
+    post_id, title, slug, short_description, content, 
+    category, tags, status, language, views, likes,
+    seo_title, seo_description, seo_keywords, published_at, author_id
+) VALUES (
+    '100015',
+    'Mobile App Development: 2026 Trends',
+    'mobile-app-development-2026-trends',
+    'Mobile apps are essential for business. In this article, we explore the key trends of 2026.',
+    'Mobile apps are essential for modern business. Users increasingly use mobile devices and companies must pay attention to mobile strategy.
+
+Key trends of 2026:
+- Cross-platform development (React Native, Flutter)
+- Progressive Web Apps (PWA)
+- AI integration
+- Augmented Reality (AR)
+- Micro-interactions
+
+Mobile app design must prioritize user experience.',
+    'Technology',
+    ARRAY['Mobile Apps', 'App Development', 'React Native', 'Flutter'],
+    'published',
+    'en',
+    0,
+    0,
+    'Mobile App Development: 2026 Trends | Proep.az',
+    'Mobile apps are essential for business. Learn about the key trends of 2026.',
+    'mobile apps, app development, React Native, Flutter, PWA',
+    CURRENT_TIMESTAMP,
+    1
+);
+
+-- 6. Digital Marketing (AZ)
 INSERT INTO admin_blog_posts (
     post_id, title, slug, short_description, content, 
     category, tags, status, language, views, likes,
@@ -201,7 +368,40 @@ Müştəri segmentasiyası və personalizasiya marketinq effektivliyini artırı
     1
 );
 
--- 7. Blockchain və Kriptovalyuta
+-- 6. Digital Marketing: Ways to Reach Customers (EN)
+INSERT INTO admin_blog_posts (
+    post_id, title, slug, short_description, content, 
+    category, tags, status, language, views, likes,
+    seo_title, seo_description, seo_keywords, published_at, author_id
+) VALUES (
+    '100016',
+    'Digital Marketing: Ways to Reach Customers',
+    'digital-marketing-ways-to-reach-customers',
+    'Digital marketing is essential for modern business. In this article, we explore effective marketing strategies.',
+    'Digital marketing is essential for modern business. The internet and social media platforms are the main channels to reach customers.
+
+Effective digital marketing strategy:
+- SEO and content marketing
+- Social media marketing
+- Email marketing
+- Pay-per-click (PPC) advertising
+- Influencer marketing
+
+Customer segmentation and personalization increase marketing effectiveness.',
+    'Marketing',
+    ARRAY['Digital Marketing', 'SEO', 'Social Media', 'Content Marketing'],
+    'published',
+    'en',
+    0,
+    0,
+    'Digital Marketing: Ways to Reach Customers | Proep.az',
+    'Digital marketing is essential for modern business. Learn about effective marketing strategies.',
+    'digital marketing, SEO, social media, content marketing',
+    CURRENT_TIMESTAMP,
+    1
+);
+
+-- 7. Blockchain və Kriptovalyuta (AZ)
 INSERT INTO admin_blog_posts (
     post_id, title, slug, short_description, content, 
     category, tags, status, language, views, likes,
@@ -233,7 +433,39 @@ Kriptovalyuta və DeFi (Decentralized Finance) blockchain-in ən məşhur tətbi
     1
 );
 
--- 8. Data Analytics və Big Data
+-- 7. Blockchain Technology: Innovation of the Future (EN)
+INSERT INTO admin_blog_posts (
+    post_id, title, slug, short_description, content, 
+    category, tags, status, language, views, likes,
+    seo_title, seo_description, seo_keywords, published_at, author_id
+) VALUES (
+    '100017',
+    'Blockchain Technology: Innovation of the Future',
+    'blockchain-technology-innovation-of-the-future',
+    'Blockchain technology is being applied in various fields. In this article, we explore the possibilities of blockchain.',
+    'Blockchain technology has attracted great attention in recent years. This technology creates revolutionary changes in finance, supply chain, and other fields.
+
+Key features of blockchain:
+- Transparency and immutability
+- Decentralized structure
+- Security
+- Smart contracts
+
+Cryptocurrency and DeFi (Decentralized Finance) are the most popular applications of blockchain.',
+    'Technology',
+    ARRAY['Blockchain', 'Cryptocurrency', 'DeFi', 'Smart Contracts'],
+    'published',
+    'en',
+    0,
+    0,
+    'Blockchain Technology: Innovation of the Future | Proep.az',
+    'Blockchain technology is being applied in various fields. Learn about the possibilities of blockchain.',
+    'blockchain, cryptocurrency, DeFi, smart contracts, innovation',
+    CURRENT_TIMESTAMP,
+    1
+);
+
+-- 8. Data Analytics və Big Data (AZ)
 INSERT INTO admin_blog_posts (
     post_id, title, slug, short_description, content, 
     category, tags, status, language, views, likes,
@@ -265,7 +497,39 @@ Machine Learning və AI data analytics-də mühüm rol oynayır.',
     1
 );
 
--- 9. Remote Work və Digital Nomad
+-- 8. Big Data and Data Analytics: Creating Value from Data (EN)
+INSERT INTO admin_blog_posts (
+    post_id, title, slug, short_description, content, 
+    category, tags, status, language, views, likes,
+    seo_title, seo_description, seo_keywords, published_at, author_id
+) VALUES (
+    '100018',
+    'Big Data and Data Analytics: Creating Value from Data',
+    'big-data-and-data-analytics-creating-value-from-data',
+    'Big Data is essential for modern business. In this article, we explore the possibilities of data analytics.',
+    'Big Data and Data Analytics are essential for modern business. Analyzing large volumes of data helps make better decisions.
+
+Key advantages of Data Analytics:
+- Understanding customer behavior
+- Forecasting market trends
+- Increasing operational efficiency
+- Risk management
+
+Machine Learning and AI play an important role in data analytics.',
+    'Analytics',
+    ARRAY['Big Data', 'Data Analytics', 'Machine Learning', 'Business Intelligence'],
+    'published',
+    'en',
+    0,
+    0,
+    'Big Data and Data Analytics: Creating Value from Data | Proep.az',
+    'Big Data is essential for modern business. Learn about the possibilities of data analytics.',
+    'big data, data analytics, machine learning, business intelligence',
+    CURRENT_TIMESTAMP,
+    1
+);
+
+-- 9. Remote Work və Digital Nomad (AZ)
 INSERT INTO admin_blog_posts (
     post_id, title, slug, short_description, content, 
     category, tags, status, language, views, likes,
@@ -297,7 +561,39 @@ Uğurlu remote work üçün düzgün texnologiya və kommunikasiya vacibdir.',
     1
 );
 
--- 10. Web Development və Modern Frameworks
+-- 9. Remote Work: The Work Model of the Future (EN)
+INSERT INTO admin_blog_posts (
+    post_id, title, slug, short_description, content, 
+    category, tags, status, language, views, likes,
+    seo_title, seo_description, seo_keywords, published_at, author_id
+) VALUES (
+    '100019',
+    'Remote Work: The Work Model of the Future',
+    'remote-work-the-work-model-of-the-future',
+    'Remote work is popular in the modern world. In this article, we explore the advantages of remote work.',
+    'Remote work has gained popularity in recent years. After the pandemic period, many companies have switched to remote work models.
+
+Key advantages of remote work:
+- Work-life balance
+- Cost reduction
+- Expanding talent pool
+- Increased productivity
+
+Proper technology and communication are essential for successful remote work.',
+    'Business',
+    ARRAY['Remote Work', 'Remote Job', 'Digital Nomad', 'Work Model'],
+    'published',
+    'en',
+    0,
+    0,
+    'Remote Work: The Work Model of the Future | Proep.az',
+    'Remote work is popular in the modern world. Learn about the advantages of remote work.',
+    'remote work, remote job, digital nomad, work model',
+    CURRENT_TIMESTAMP,
+    1
+);
+
+-- 10. Web Development və Modern Frameworks (AZ)
 INSERT INTO admin_blog_posts (
     post_id, title, slug, short_description, content, 
     category, tags, status, language, views, likes,
@@ -330,10 +626,43 @@ Modern web development performans, SEO və istifadəçi təcrübəsinə diqqət 
     1
 );
 
+-- 10. Modern Web Development: 2026 Technologies (EN)
+INSERT INTO admin_blog_posts (
+    post_id, title, slug, short_description, content, 
+    category, tags, status, language, views, likes,
+    seo_title, seo_description, seo_keywords, published_at, author_id
+) VALUES (
+    '100020',
+    'Modern Web Development: 2026 Technologies',
+    'modern-web-development-2026-technologies',
+    'Web development is rapidly evolving. In this article, we explore the key technologies of 2026.',
+    'The web development field is rapidly evolving. New frameworks and technologies provide developers with more opportunities.
+
+Key technologies of 2026:
+- React 19 and Next.js 15
+- Vue.js 3 and Nuxt.js
+- SvelteKit
+- TypeScript
+- Serverless architecture
+
+Modern web development focuses on performance, SEO, and user experience.',
+    'Technology',
+    ARRAY['Web Development', 'React', 'Vue.js', 'TypeScript', 'Next.js'],
+    'published',
+    'en',
+    0,
+    0,
+    'Modern Web Development: 2026 Technologies | Proep.az',
+    'Web development is rapidly evolving. Learn about the key technologies of 2026.',
+    'web development, React, Vue.js, TypeScript, Next.js, modern frameworks',
+    CURRENT_TIMESTAMP,
+    1
+);
+
 -- ============================================
 -- SUCCESS MESSAGE
 -- ============================================
 DO $$
 BEGIN
-    RAISE NOTICE '✅ 10 blog post uğurla əlavə edildi!';
+    RAISE NOTICE '✅ 20 blog post uğurla əlavə edildi! (10 AZ + 10 EN)';
 END $$;
