@@ -38,25 +38,16 @@ async function createAdminTables() {
     const tablesPath = path.join(__dirname, 'admin-tables.sql');
     const tablesSQL = fs.readFileSync(tablesPath, 'utf8');
     
-    // SQL-i sətir-sətir icra et (xəta olsa belə davam etsin)
-    const statements = tablesSQL
-      .split(';')
-      .map(s => s.trim())
-      .filter(s => s.length > 0 && !s.startsWith('--'));
-    
-    for (const statement of statements) {
-      try {
-        if (statement.length > 10) { // Minimum statement length
-          await pool.query(statement + ';');
-        }
-      } catch (err) {
-        // Əgər table artıq varsa, xəta vermə
-        if (err.code === '42P07') { // Table already exists
-          console.log(`   ⚠️  Table artıq mövcuddur: ${err.message.split('"')[1] || 'unknown'}`);
-        } else {
-          console.error(`   ❌ Xəta: ${err.message}`);
-          throw err;
-        }
+    // SQL-i birbaşa icra et
+    try {
+      await pool.query(tablesSQL);
+    } catch (err) {
+      // Əgər table artıq varsa, xəta vermə
+      if (err.code === '42P07') { // Table already exists
+        console.log(`   ⚠️  Bəzi table-lar artıq mövcuddur, davam edilir...`);
+      } else {
+        console.error(`   ❌ SQL xətası: ${err.message}`);
+        throw err;
       }
     }
     
