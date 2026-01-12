@@ -26,11 +26,40 @@ async function createAdminTables() {
   try {
     console.log('🔧 Admin tables yaradılır...\n');
 
-    // Tables faylını oxu və icra et
+    // Əvvəlcə admin_users və admin_sessions table-larını yoxla/yarat
+    console.log('1️⃣  Admin users və sessions table-ları yoxlanılır...');
+    const adminSchemaPath = path.join(__dirname, 'admin-schema.sql');
+    const adminSchemaSQL = fs.readFileSync(adminSchemaPath, 'utf8');
+    await pool.query(adminSchemaSQL);
+    console.log('✅ Admin users və sessions table-ları hazırdır\n');
+
+    // Sonra digər admin table-larını yarat
+    console.log('2️⃣  Digər admin table-ları yaradılır...');
     const tablesPath = path.join(__dirname, 'admin-tables.sql');
     const tablesSQL = fs.readFileSync(tablesPath, 'utf8');
     
-    await pool.query(tablesSQL);
+    // SQL-i sətir-sətir icra et (xəta olsa belə davam etsin)
+    const statements = tablesSQL
+      .split(';')
+      .map(s => s.trim())
+      .filter(s => s.length > 0 && !s.startsWith('--'));
+    
+    for (const statement of statements) {
+      try {
+        if (statement.length > 10) { // Minimum statement length
+          await pool.query(statement + ';');
+        }
+      } catch (err) {
+        // Əgər table artıq varsa, xəta vermə
+        if (err.code === '42P07') { // Table already exists
+          console.log(`   ⚠️  Table artıq mövcuddur: ${err.message.split('"')[1] || 'unknown'}`);
+        } else {
+          console.error(`   ❌ Xəta: ${err.message}`);
+          throw err;
+        }
+      }
+    }
+    
     console.log('✅ Admin tables uğurla yaradıldı\n');
 
     // Table statistikasını göstər
@@ -45,15 +74,19 @@ async function createAdminTables() {
     `);
 
     console.log('📊 Yaradılmış tablolar:\n');
-    stats.rows.forEach(row => {
-      console.log(`   ✓ ${row.tablename.padEnd(40)} (${row.size})`);
-    });
+    if (stats.rows.length === 0) {
+      console.log('   ⚠️  Heç bir admin table tapılmadı!');
+    } else {
+      stats.rows.forEach(row => {
+        console.log(`   ✓ ${row.tablename.padEnd(40)} (${row.size})`);
+      });
+    }
 
     console.log('\n🎉 Setup tamamlandı!');
 
   } catch (error) {
     console.error('❌ Xəta:', error.message);
-    console.error(error);
+    console.error('Stack:', error.stack);
     process.exit(1);
   } finally {
     await pool.end();
