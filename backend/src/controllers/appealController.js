@@ -1,5 +1,7 @@
 import pool from '../config/database.js';
 import { sendTelegramNotification } from '../services/telegramService.js';
+import messagesModel from '../models/messagesModel.js';
+import { getIpAddress, getUserAgent } from '../utils/auth.js';
 
 export const createAppeal = async (req, res) => {
   const client = await pool.connect();
@@ -7,7 +9,7 @@ export const createAppeal = async (req, res) => {
   try {
     const { mail, phone_number, appeal, name, message } = req.body;
 
-    // Insert appeal into database
+    // Insert appeal into database (köhnə table)
     const result = await client.query(
       `INSERT INTO admin.appeal (mail, phone_number, appeal, name, message)
        VALUES ($1, $2, $3, $4, $5)
@@ -16,6 +18,36 @@ export const createAppeal = async (req, res) => {
     );
 
     const newAppeal = result.rows[0];
+
+    // Appeal type mapping
+    const appealTypeMap = {
+      1: 'Web saytın yaradılması',
+      2: 'AI Konsaltinq və Strategiya',
+      3: 'Backend Development və API Həlləri',
+      4: 'AI Model İnteqrasiyası',
+      5: 'Avtomatlaşdırma Sistemləri',
+      6: 'Data Analitika və Machine Learning',
+      7: 'Mövcud Sistemin Təkmilləşdirilməsi',
+      8: 'Texniki Dəstək və Konsaltinq',
+      9: 'Digər'
+    };
+
+    // admin_messages table-ə də yaz
+    const ipAddress = getIpAddress(req);
+    const userAgent = getUserAgent(req);
+    const subject = appealTypeMap[appeal] || 'Digər';
+
+    await messagesModel.create({
+      name,
+      email: mail,
+      phone_number,
+      appeal_type: appeal,
+      subject,
+      message,
+      ip_address: ipAddress,
+      user_agent: userAgent,
+      status: 'unread'
+    });
 
     // Send Telegram notification (async, don't wait - don't block response)
     sendTelegramNotification(newAppeal).catch(error => {

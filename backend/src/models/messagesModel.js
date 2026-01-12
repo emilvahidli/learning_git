@@ -61,6 +61,30 @@ const messagesModel = {
   },
 
   /**
+   * Yeni mesaj yarat
+   */
+  async create(data) {
+    const query = `
+      INSERT INTO admin_messages 
+      (name, email, phone_number, appeal_type, subject, message, ip_address, user_agent, status)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+      RETURNING *
+    `;
+    const result = await pool.query(query, [
+      data.name,
+      data.email,
+      data.phone_number || null,
+      data.appeal_type || null,
+      data.subject || null,
+      data.message,
+      data.ip_address || null,
+      data.user_agent || null,
+      data.status || 'unread'
+    ]);
+    return result.rows[0];
+  },
+
+  /**
    * Mesajı read olaraq işarələ
    */
   async markAsRead(id) {

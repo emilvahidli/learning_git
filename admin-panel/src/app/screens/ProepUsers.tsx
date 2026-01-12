@@ -226,81 +226,111 @@ export function Users() {
             </h2>
             
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <Input
-                  label="Username"
-                  value={formData.username}
-                  onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-                  required
-                  placeholder="username"
-                />
-                
-                <Input
-                  label={editingUser ? "Yeni Şifrə (boş qalsın dəyişməmək üçün)" : "Şifrə"}
-                  type="password"
-                  value={formData.password}
-                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  required={!editingUser}
-                  placeholder={editingUser ? "Yalnız dəyişdirmək istəsəniz yazın" : "Şifrə"}
-                />
-              </div>
+              {!editingUser && (
+                <>
+                  <div className="grid grid-cols-2 gap-4">
+                    <Input
+                      label="Username"
+                      value={formData.username}
+                      onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+                      required
+                      placeholder="username"
+                    />
+                    
+                    <Input
+                      label="Şifrə"
+                      type="password"
+                      value={formData.password}
+                      onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                      required
+                      placeholder="Şifrə"
+                    />
+                  </div>
+                  
+                  <div className="pt-4 border-t border-white/10">
+                    <p className="text-sm text-gray-400 mb-4">
+                      Digər məlumatları sonra redaktə edə bilərsiniz
+                    </p>
+                  </div>
+                </>
+              )}
               
-              <Input
-                label="Ad Soyad"
-                value={formData.full_name}
-                onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
-                required
-              />
-              
-              <Input
-                label="Email"
-                type="email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                required
-              />
-              
-              <Input
-                label="Telefon"
-                value={formData.phone_number}
-                onChange={(e) => setFormData({ ...formData, phone_number: e.target.value })}
-                placeholder="+994501234567"
-              />
-              
-              <Input
-                label="Şirkət"
-                value={formData.company}
-                onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-              />
-              
-              <Input
-                label="Vəzifə"
-                value={formData.position}
-                onChange={(e) => setFormData({ ...formData, position: e.target.value })}
-              />
-              
-              <div className="grid grid-cols-2 gap-4">
-                <Select
-                  label="Status"
-                  value={formData.status}
-                  onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                  options={[
-                    { value: 'active', label: 'Active' },
-                    { value: 'inactive', label: 'Inactive' },
-                    { value: 'blocked', label: 'Blocked' },
-                  ]}
-                />
-                
-                <Select
-                  label="Silinə Bilər"
-                  value={formData.can_delete ? 'true' : 'false'}
-                  onChange={(e) => setFormData({ ...formData, can_delete: e.target.value === 'true' })}
-                  options={[
-                    { value: 'true', label: 'Bəli' },
-                    { value: 'false', label: 'Xeyr' },
-                  ]}
-                />
-              </div>
+              {editingUser && (
+                <>
+                  <Input
+                    label="Username"
+                    value={formData.username}
+                    onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+                    required
+                    placeholder="username"
+                  />
+                  
+                  <Input
+                    label="Yeni Şifrə (boş qalsın dəyişməmək üçün)"
+                    type="password"
+                    value={formData.password}
+                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                    placeholder="Yalnız dəyişdirmək istəsəniz yazın"
+                  />
+                  
+                  <Input
+                    label="Ad Soyad"
+                    value={formData.full_name}
+                    onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
+                    required
+                  />
+                  
+                  <Input
+                    label="Email"
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    required
+                  />
+                  
+                  <Input
+                    label="Telefon"
+                    value={formData.phone_number}
+                    onChange={(e) => setFormData({ ...formData, phone_number: e.target.value })}
+                    placeholder="+994501234567"
+                  />
+                  
+                  <Input
+                    label="Şirkət"
+                    value={formData.company}
+                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                  />
+                  
+                  <Input
+                    label="Vəzifə"
+                    value={formData.position}
+                    onChange={(e) => setFormData({ ...formData, position: e.target.value })}
+                  />
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <Select
+                      label="Status"
+                      value={formData.status}
+                      onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+                      options={[
+                        { value: 'active', label: 'Active' },
+                        { value: 'inactive', label: 'Inactive' },
+                        { value: 'blocked', label: 'Blocked' },
+                      ]}
+                    />
+                    
+                    <Select
+                      label="Silinə Bilər"
+                      value={formData.can_delete ? 'true' : 'false'}
+                      onChange={(e) => setFormData({ ...formData, can_delete: e.target.value === 'true' })}
+                      options={[
+                        { value: 'true', label: 'Bəli' },
+                        { value: 'false', label: 'Xeyr' },
+                      ]}
+                    />
+                  </div>
+                </>
+              )}
 
               <div className="flex gap-3 pt-4">
                 <Button type="submit">
