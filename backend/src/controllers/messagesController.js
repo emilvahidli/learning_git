@@ -27,7 +27,8 @@ export async function getAllMessages(req, res) {
     console.error('Get messages error:', error);
     return res.status(500).json({
       success: false,
-      message: 'Server xətası'
+      message: error.message || 'Server xətası',
+      error: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
   }
 }
@@ -62,7 +63,8 @@ export async function getMessage(req, res) {
     console.error('Get message error:', error);
     return res.status(500).json({
       success: false,
-      message: 'Server xətası'
+      message: error.message || 'Server xətası',
+      error: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
   }
 }
@@ -101,7 +103,8 @@ export async function replyMessage(req, res) {
     console.error('Reply message error:', error);
     return res.status(500).json({
       success: false,
-      message: 'Server xətası'
+      message: error.message || 'Server xətası',
+      error: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
   }
 }
@@ -131,7 +134,8 @@ export async function archiveMessage(req, res) {
     console.error('Archive message error:', error);
     return res.status(500).json({
       success: false,
-      message: 'Server xətası'
+      message: error.message || 'Server xətası',
+      error: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
   }
 }
@@ -153,7 +157,8 @@ export async function deleteMessage(req, res) {
     console.error('Delete message error:', error);
     return res.status(500).json({
       success: false,
-      message: 'Server xətası'
+      message: error.message || 'Server xətası',
+      error: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
   }
 }

@@ -1,4 +1,5 @@
 import portfolioModel from '../models/portfolioModel.js';
+import { handleError } from '../utils/errorHandler.js';
 
 /**
  * Bütün portfolio layihələri
@@ -25,11 +26,7 @@ export async function getAllProjects(req, res) {
       }
     });
   } catch (error) {
-    console.error('Get projects error:', error);
-    return res.status(500).json({
-      success: false,
-      message: 'Server xətası'
-    });
+    return handleError(error, res);
   }
 }
 
@@ -54,11 +51,7 @@ export async function getProject(req, res) {
       data: project
     });
   } catch (error) {
-    console.error('Get project error:', error);
-    return res.status(500).json({
-      success: false,
-      message: 'Server xətası'
-    });
+    return handleError(error, res);
   }
 }
 
@@ -95,11 +88,7 @@ export async function createProject(req, res) {
       data: project
     });
   } catch (error) {
-    console.error('Create project error:', error);
-    return res.status(500).json({
-      success: false,
-      message: 'Server xətası'
-    });
+    return handleError(error, res);
   }
 }
 
@@ -137,11 +126,7 @@ export async function updateProject(req, res) {
       data: project
     });
   } catch (error) {
-    console.error('Update project error:', error);
-    return res.status(500).json({
-      success: false,
-      message: 'Server xətası'
-    });
+    return handleError(error, res);
   }
 }
 
@@ -167,11 +152,7 @@ export async function publishProject(req, res) {
       data: project
     });
   } catch (error) {
-    console.error('Publish project error:', error);
-    return res.status(500).json({
-      success: false,
-      message: 'Server xətası'
-    });
+    return handleError(error, res);
   }
 }
 
@@ -189,11 +170,7 @@ export async function deleteProject(req, res) {
       message: 'Layihə silindi'
     });
   } catch (error) {
-    console.error('Delete project error:', error);
-    return res.status(500).json({
-      success: false,
-      message: 'Server xətası'
-    });
+    return handleError(error, res);
   }
 }
 
@@ -209,10 +186,6 @@ export async function getCategories(req, res) {
       data: categories
     });
   } catch (error) {
-    console.error('Get categories error:', error);
-    return res.status(500).json({
-      success: false,
-      message: 'Server xətası'
-    });
+    return handleError(error, res);
   }
 }

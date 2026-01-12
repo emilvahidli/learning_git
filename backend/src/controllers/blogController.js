@@ -1,4 +1,5 @@
 import blogModel from '../models/blogModel.js';
+import { handleError } from '../utils/errorHandler.js';
 
 /**
  * Bütün blog postları
@@ -26,11 +27,7 @@ export async function getAllPosts(req, res) {
       }
     });
   } catch (error) {
-    console.error('Get posts error:', error);
-    return res.status(500).json({
-      success: false,
-      message: 'Server xətası'
-    });
+    return handleError(error, res);
   }
 }
 
@@ -61,11 +58,7 @@ export async function getPost(req, res) {
       data: post
     });
   } catch (error) {
-    console.error('Get post error:', error);
-    return res.status(500).json({
-      success: false,
-      message: 'Server xətası'
-    });
+    return handleError(error, res);
   }
 }
 
@@ -108,11 +101,7 @@ export async function createPost(req, res) {
       data: post
     });
   } catch (error) {
-    console.error('Create post error:', error);
-    return res.status(500).json({
-      success: false,
-      message: 'Server xətası'
-    });
+    return handleError(error, res);
   }
 }
 
@@ -156,11 +145,7 @@ export async function updatePost(req, res) {
       data: post
     });
   } catch (error) {
-    console.error('Update post error:', error);
-    return res.status(500).json({
-      success: false,
-      message: 'Server xətası'
-    });
+    return handleError(error, res);
   }
 }
 
@@ -186,11 +171,7 @@ export async function publishPost(req, res) {
       data: post
     });
   } catch (error) {
-    console.error('Publish post error:', error);
-    return res.status(500).json({
-      success: false,
-      message: 'Server xətası'
-    });
+    return handleError(error, res);
   }
 }
 
@@ -208,11 +189,7 @@ export async function deletePost(req, res) {
       message: 'Post silindi'
     });
   } catch (error) {
-    console.error('Delete post error:', error);
-    return res.status(500).json({
-      success: false,
-      message: 'Server xətası'
-    });
+    return handleError(error, res);
   }
 }
 
@@ -228,10 +205,6 @@ export async function getCategories(req, res) {
       data: categories
     });
   } catch (error) {
-    console.error('Get categories error:', error);
-    return res.status(500).json({
-      success: false,
-      message: 'Server xətası'
-    });
+    return handleError(error, res);
   }
 }
