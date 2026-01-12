@@ -88,17 +88,30 @@ export function Users() {
     e.preventDefault();
     
     try {
-      const submitData = {
-        username: formData.username,
-        password: formData.password || undefined,
-        full_name: formData.full_name,
-        email: formData.email,
-        phone_number: formData.phone_number || undefined,
-        company: formData.company || undefined,
-        position: formData.position || undefined,
-        status: formData.status,
-        can_delete: formData.can_delete,
-      };
+      let submitData: any;
+      
+      if (editingUser) {
+        // Edit zamanı bütün məlumatlar
+        submitData = {
+          username: formData.username,
+          password: formData.password || undefined,
+          full_name: formData.full_name,
+          email: formData.email,
+          phone_number: formData.phone_number || undefined,
+          company: formData.company || undefined,
+          position: formData.position || undefined,
+          status: formData.status,
+          can_delete: formData.can_delete,
+        };
+      } else {
+        // Yeni user üçün yalnız username və password
+        submitData = {
+          username: formData.username,
+          password: formData.password,
+          full_name: formData.username, // Username-i full_name kimi istifadə et
+          email: `${formData.username}@proep.az`, // Temporary email
+        };
+      }
 
       if (editingUser) {
         await apiRequest(`${api.admin.users}/${editingUser.id}`, {
