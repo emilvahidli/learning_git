@@ -1,4 +1,4 @@
-import { LayoutDashboard, Users, FileText, Mail, Settings, Briefcase } from 'lucide-react';
+import { LayoutDashboard, Users, FileText, Mail, Settings, Briefcase, Server } from 'lucide-react';
 
 interface SidebarProps {
   activeMenu: string;
@@ -12,6 +12,7 @@ export function Sidebar({ activeMenu, onMenuChange }: SidebarProps) {
     { id: 'users', label: 'İstifadəçilər', icon: Users },
     { id: 'blog', label: 'Blog', icon: FileText },
     { id: 'portfolio', label: 'Portfolio', icon: Briefcase },
+    { id: 'server-stats', label: 'Server Stats', icon: Server },
     { id: 'settings', label: 'Settings', icon: Settings, disabled: true },
   ];
 

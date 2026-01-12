@@ -16,6 +16,7 @@ export const api = {
     users: `${API_BASE_URL}/api/admin/users`,
     blog: `${API_BASE_URL}/api/admin/blog`,
     portfolio: `${API_BASE_URL}/api/admin/portfolio`,
+    serverStats: `${API_BASE_URL}/api/admin/server-stats`,
   },
 };
 

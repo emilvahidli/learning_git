@@ -8,6 +8,7 @@ import usersRoutes from './routes/usersRoutes.js';
 import blogRoutes from './routes/blogRoutes.js';
 import portfolioRoutes from './routes/portfolioRoutes.js';
 import publicRoutes from './routes/publicRoutes.js';
+import serverStatsRoutes from './routes/serverStatsRoutes.js';
 import pool from './config/database.js';
 
 dotenv.config();
@@ -64,6 +65,7 @@ app.use('/api/admin/messages', messagesRoutes);
 app.use('/api/admin/users', usersRoutes);
 app.use('/api/admin/blog', blogRoutes);
 app.use('/api/admin/portfolio', portfolioRoutes);
+app.use('/api/admin/server-stats', serverStatsRoutes);
 
 // 404 handler
 app.use((req, res) => {

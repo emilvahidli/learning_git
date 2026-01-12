@@ -7,6 +7,7 @@ import { Users } from './screens/ProepUsers';
 import { Blog } from './screens/ProepBlog';
 import { Messages } from './screens/ProepMessages';
 import { Portfolio } from './screens/ProepPortfolio';
+import { ProepServerStats } from './screens/ProepServerStats';
 import { useState } from 'react';
 
 function AppContent() {
@@ -40,6 +41,8 @@ function AppContent() {
         return <Messages />;
       case 'portfolio':
         return <Portfolio />;
+      case 'server-stats':
+        return <ProepServerStats />;
       default:
         return <Dashboard />;
     }
