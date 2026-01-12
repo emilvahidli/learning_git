@@ -125,9 +125,34 @@ export async function createUser(req, res) {
     });
   } catch (error) {
     console.error('Create user error:', error);
+    
+    // Database constraint errors
+    if (error.code === '23505') { // Unique violation
+      if (error.constraint?.includes('username')) {
+        return res.status(400).json({
+          success: false,
+          message: 'Bu username artıq mövcuddur'
+        });
+      }
+      if (error.constraint?.includes('email')) {
+        return res.status(400).json({
+          success: false,
+          message: 'Bu email artıq mövcuddur'
+        });
+      }
+    }
+    
+    if (error.code === '23502') { // Not null violation
+      return res.status(400).json({
+        success: false,
+        message: 'Bütün mütləq sahələr doldurulmalıdır'
+      });
+    }
+    
     return res.status(500).json({
       success: false,
-      message: error.message || 'Server xətası'
+      message: error.message || 'Server xətası',
+      error: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
   }
 }

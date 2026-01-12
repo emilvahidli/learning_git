@@ -127,9 +127,21 @@ export function Users() {
       
       await loadUsers();
       setShowModal(false);
+      setFormData({
+        username: '',
+        password: '',
+        full_name: '',
+        email: '',
+        phone_number: '',
+        company: '',
+        position: '',
+        status: 'active',
+        can_delete: true,
+      });
     } catch (error: any) {
       console.error('Save error:', error);
-      alert(error.message || 'Xəta baş verdi');
+      const errorMessage = error.message || error.response?.data?.message || 'Xəta baş verdi';
+      alert(errorMessage);
     }
   };
 
