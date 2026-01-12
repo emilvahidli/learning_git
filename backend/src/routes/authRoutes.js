@@ -1,5 +1,5 @@
 import express from 'express';
-import { login, logout, verifyAuth, changePassword } from '../controllers/authController.js';
+import { login, logout, verifyAuth, changePassword, frontendUserLogin } from '../controllers/authController.js';
 import { requireAuth } from '../middleware/auth.js';
 
 const router = express.Router();
@@ -10,6 +10,13 @@ const router = express.Router();
  * @access  Public
  */
 router.post('/login', login);
+
+/**
+ * @route   POST /api/auth/frontend-user-login
+ * @desc    Frontend user login (admin panel-ə giriş)
+ * @access  Public
+ */
+router.post('/frontend-user-login', frontendUserLogin);
 
 /**
  * @route   POST /api/auth/logout

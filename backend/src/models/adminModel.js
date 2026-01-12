@@ -134,6 +134,31 @@ const adminModel = {
       WHERE id = $2
     `;
     await pool.query(query, [passwordHash, id]);
+  },
+
+  /**
+   * Frontend user-i username-ə görə tap (login üçün)
+   */
+  async findFrontendUserByUsername(username) {
+    const query = `
+      SELECT id, username, password_hash, full_name, email, status
+      FROM admin_frontend_users
+      WHERE username = $1
+    `;
+    const result = await pool.query(query, [username]);
+    return result.rows[0];
+  },
+
+  /**
+   * Frontend user aktivliyini yenilə
+   */
+  async updateFrontendUserActivity(id) {
+    const query = `
+      UPDATE admin_frontend_users
+      SET last_activity = CURRENT_TIMESTAMP
+      WHERE id = $1
+    `;
+    await pool.query(query, [id]);
   }
 };
 

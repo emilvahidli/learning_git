@@ -71,7 +71,7 @@ export function Login() {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="emil.vahidli"
+                placeholder="İstifadəçi adınızı daxil edin"
                 required
                 autoComplete="username"
               />

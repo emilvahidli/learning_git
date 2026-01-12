@@ -77,6 +77,14 @@ export async function createUser(req, res) {
       });
     }
 
+    // Yeni user üçün password mütləq olmalıdır
+    if (!password) {
+      return res.status(400).json({
+        success: false,
+        message: 'Yeni istifadəçi üçün şifrə tələb olunur'
+      });
+    }
+
     // Username-in mövcudluğunu yoxla
     const existingByUsername = await usersModel.getByUsername?.(username);
     if (existingByUsername) {

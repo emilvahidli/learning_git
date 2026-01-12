@@ -82,7 +82,7 @@ const usersModel = {
       SELECT id, username, full_name, email, phone_number, company, position, 
              status, created_at, updated_at, can_delete
       FROM admin_frontend_users 
-      WHERE username = $1
+      WHERE username = $1 AND status = 'active'
     `;
     const result = await pool.query(query, [username]);
     return result.rows[0];

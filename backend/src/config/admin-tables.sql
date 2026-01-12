@@ -27,6 +27,8 @@ CREATE TABLE IF NOT EXISTS admin_messages (
 -- =============================================
 CREATE TABLE IF NOT EXISTS admin_frontend_users (
     id SERIAL PRIMARY KEY,
+    username VARCHAR(50) UNIQUE,
+    password_hash VARCHAR(255),
     full_name VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     phone_number VARCHAR(20),
@@ -36,6 +38,7 @@ CREATE TABLE IF NOT EXISTS admin_frontend_users (
     email_verified BOOLEAN DEFAULT FALSE,
     last_activity TIMESTAMP,
     notes TEXT,
+    can_delete BOOLEAN DEFAULT TRUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

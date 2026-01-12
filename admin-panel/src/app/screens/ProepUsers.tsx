@@ -226,22 +226,24 @@ export function Users() {
             </h2>
             
             <form onSubmit={handleSubmit} className="space-y-4">
-              <Input
-                label="Username"
-                value={formData.username}
-                onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-                required
-                placeholder="username"
-              />
-              
-              <Input
-                label={editingUser ? "Yeni Şifrə (boş qalsın dəyişməmək üçün)" : "Şifrə"}
-                type="password"
-                value={formData.password}
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                required={!editingUser}
-                placeholder={editingUser ? "Yalnız dəyişdirmək istəsəniz yazın" : "Şifrə"}
-              />
+              <div className="grid grid-cols-2 gap-4">
+                <Input
+                  label="Username"
+                  value={formData.username}
+                  onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+                  required
+                  placeholder="username"
+                />
+                
+                <Input
+                  label={editingUser ? "Yeni Şifrə (boş qalsın dəyişməmək üçün)" : "Şifrə"}
+                  type="password"
+                  value={formData.password}
+                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  required={!editingUser}
+                  placeholder={editingUser ? "Yalnız dəyişdirmək istəsəniz yazın" : "Şifrə"}
+                />
+              </div>
               
               <Input
                 label="Ad Soyad"
