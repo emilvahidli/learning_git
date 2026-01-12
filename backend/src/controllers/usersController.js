@@ -216,9 +216,27 @@ export async function updateUser(req, res) {
     });
   } catch (error) {
     console.error('Update user error:', error);
+    
+    // Database constraint errors
+    if (error.code === '23505') { // Unique violation
+      if (error.constraint?.includes('username')) {
+        return res.status(400).json({
+          success: false,
+          message: 'Bu username artıq mövcuddur'
+        });
+      }
+      if (error.constraint?.includes('email')) {
+        return res.status(400).json({
+          success: false,
+          message: 'Bu email artıq mövcuddur'
+        });
+      }
+    }
+    
     return res.status(500).json({
       success: false,
-      message: error.message || 'Server xətası'
+      message: error.message || 'Server xətası',
+      error: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
   }
 }
