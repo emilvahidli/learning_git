@@ -1,5 +1,4 @@
 import si from 'systeminformation';
-import { requireAuth } from '../middleware/auth.js';
 
 /**
  * Server statistikalarını əldə et
