@@ -1,0 +1,243 @@
+{
+    "nav": {
+        "home": "Home",
+        "services": "Services",
+        "portfolio": "Projects",
+        "blog": "News",
+        "contact": "Contact"
+    },
+    "hero": {
+        "title": "Enterprise Technology Solutions",
+        "subtitle": "We help businesses transform their operations with cutting-edge AI integration, backend development, and cloud solutions.",
+        "cta": "Get Started",
+        "secondary": "Learn More"
+    },
+    "intro": {
+        "title": "Why Choose Proep?",
+        "description": "With years of experience in enterprise technology, we deliver solutions that scale. Our team specializes in AI integration, custom backend development, and process automation.",
+        "stats": {
+            "projects": "50+ Projects",
+            "clients": "30+ Clients",
+            "years": "5+ Years"
+        }
+    },
+    "services": {
+        "title": "Our Services",
+        "subtitle": "Comprehensive technology solutions tailored to your business needs.",
+        "items": [
+            {
+                "title": "AI Integration",
+                "description": "Integrate AI models and automation into your business processes for smarter decision-making."
+            },
+            {
+                "title": "Backend Development",
+                "description": "Scalable, secure backend systems and API development for your applications."
+            },
+            {
+                "title": "Cloud Solutions",
+                "description": "AWS, Azure, GCP infrastructure setup, migration and management services."
+            },
+            {
+                "title": "Process Automation",
+                "description": "Automate workflows and increase operational efficiency across your organization."
+            }
+        ]
+    },
+    "projects": {
+        "title": "Our Projects",
+        "subtitle": "A selection of our recent work and successful implementations.",
+        "viewAll": "View All Projects",
+        "viewProject": "View Project",
+        "items": [
+            {
+                "id": 1,
+                "title": "GoSport.az - Sports Platform",
+                "shortDesc": "Modern online platform for sports enthusiasts. Sports events, news, and interactive features.",
+                "description": "GoSport.az is a modern online platform created for sports enthusiasts. The platform provides sports events, live scores, news, and analytics. Users can access information about various sports, follow events, and use interactive features.",
+                "technologies": [
+                    "React",
+                    "Node.js",
+                    "PostgreSQL",
+                    "Redis",
+                    "WebSocket"
+                ],
+                "features": [
+                    "Responsive design for all devices",
+                    "Live scores in real-time",
+                    "Interactive maps and statistics",
+                    "User profiles and social features",
+                    "SEO optimized structure"
+                ],
+                "url": "https://gosport.az"
+            },
+            {
+                "id": 2,
+                "title": "Courir.az - Sports & Athletics Portal",
+                "shortDesc": "Information portal for sports and athletics. Running, athletics, and sports events information.",
+                "description": "Courir.az is an information portal in the field of sports and athletics. The platform provides information about running, athletic competitions, sports events, and training programs. Users can view race results, calendars, and athlete profiles.",
+                "technologies": [
+                    "Vue.js",
+                    "Node.js",
+                    "MongoDB",
+                    "Express",
+                    "REST API"
+                ],
+                "features": [
+                    "Race results and statistics",
+                    "Sports calendar and events",
+                    "Athlete profiles and performance data",
+                    "Training programs and recommendations",
+                    "Mobile-friendly design"
+                ],
+                "url": "https://courir.az"
+            },
+            {
+                "id": 3,
+                "title": "Trust Garant - Guarantee Solutions",
+                "shortDesc": "Modern platform for guarantee and warranty services. Reliable guarantee solutions for customers.",
+                "description": "Trust Garant is a modern platform created for guarantee and warranty services. The company provides comprehensive guarantee and warranty solutions to customers. The platform covers online application, guarantee tracking, and customer support functions.",
+                "technologies": [
+                    "React",
+                    "TypeScript",
+                    "Node.js",
+                    "PostgreSQL",
+                    "Stripe API"
+                ],
+                "features": [
+                    "Online guarantee applications",
+                    "Guarantee status tracking system",
+                    "Customer portal and document management",
+                    "Secure payment integration",
+                    "Multilingual support (TR, AZ, EN)"
+                ],
+                "url": "https://trustgarant.com"
+            },
+            {
+                "id": 4,
+                "title": "Zum - Innovative Business Solutions",
+                "shortDesc": "Platform for modern business solutions. Innovative technologies and services for companies.",
+                "description": "Zum is a platform created for modern business solutions. The company provides innovative technologies and services in various fields. The platform offers business process optimization, automation, and digital transformation solutions.",
+                "technologies": [
+                    "Next.js",
+                    "Node.js",
+                    "PostgreSQL",
+                    "GraphQL",
+                    "Docker"
+                ],
+                "features": [
+                    "Business process automation",
+                    "Digital transformation solutions",
+                    "Cloud-based infrastructure",
+                    "Real-time analytics and reports",
+                    "API integrations"
+                ],
+                "url": "https://zum.az"
+            },
+            {
+                "id": 5,
+                "title": "Damla Mebel - Furniture & Design",
+                "shortDesc": "Online store for furniture and interior design solutions. Modern furniture collections and design services.",
+                "description": "Damla Mebel is an online store created for furniture and interior design solutions. The company provides modern furniture collections, interior design services, and consultation. The platform offers users a wide furniture selection, 3D visualization, and online ordering.",
+                "technologies": [
+                    "React",
+                    "Node.js",
+                    "PostgreSQL",
+                    "Stripe",
+                    "3D Visualization"
+                ],
+                "features": [
+                    "Extensive furniture catalog with filters",
+                    "3D room visualization",
+                    "Online ordering and payment system",
+                    "Design consultation services",
+                    "Delivery and installation services"
+                ],
+                "url": "https://damlamebel.az"
+            },
+            {
+                "id": 6,
+                "title": "Barok Mebel - Premium Furniture",
+                "shortDesc": "Online platform for premium furniture and interior design. High-quality furniture and exclusive design services.",
+                "description": "Barok Mebel is an online platform created for premium furniture and interior design solutions. The company provides high-quality furniture, exclusive design solutions, and exclusive collections. The platform offers users premium furniture selection, personalized design services, and consultation.",
+                "technologies": [
+                    "Vue.js",
+                    "Laravel",
+                    "MySQL",
+                    "Payment Gateway",
+                    "CMS"
+                ],
+                "features": [
+                    "Premium furniture collections",
+                    "Personalized design and configuration",
+                    "Online catalog with 360° views",
+                    "Consultation and design services",
+                    "Premium customer support"
+                ],
+                "url": "https://barokmebel.az"
+            }
+        ]
+    },
+    "blog": {
+        "title": "Latest News",
+        "subtitle": "Stay updated with the latest trends in technology and our company news.",
+        "readMore": "Read More",
+        "viewAll": "View All Articles",
+        "backToBlog": "Back to News",
+        "items": [
+            {
+                "id": 1,
+                "title": "The Future of AI in Enterprise",
+                "excerpt": "How artificial intelligence is reshaping business operations and what it means for your company.",
+                "date": "January 15, 2026",
+                "category": "AI",
+                "content": "Artificial intelligence is no longer a futuristic concept – it's actively transforming how businesses operate today. From automated customer service to predictive analytics, AI is helping companies make smarter decisions faster.\n\nAt Proep.az, we've seen firsthand how AI integration can reduce operational costs by up to 40% while improving accuracy and customer satisfaction. Our clients in the banking and retail sectors have benefited from custom AI solutions that handle everything from fraud detection to inventory management.\n\nThe key to successful AI implementation is starting with clear business objectives. Rather than adopting AI for its own sake, companies should identify specific pain points where automation and machine learning can provide measurable value.\n\nLooking ahead, we expect to see even more sophisticated AI applications in areas like natural language processing, computer vision, and autonomous decision-making systems. Businesses that start building their AI capabilities now will have a significant competitive advantage in the years to come."
+            },
+            {
+                "id": 2,
+                "title": "Cloud Migration Best Practices",
+                "excerpt": "Key considerations and strategies for a successful cloud migration project.",
+                "date": "January 10, 2026",
+                "category": "Cloud",
+                "content": "Migrating to the cloud is one of the most significant technology decisions a company can make. When done correctly, it can reduce infrastructure costs, improve scalability, and enable new capabilities. However, poor planning can lead to cost overruns and security vulnerabilities.\n\nBefore starting any migration, it's essential to conduct a thorough assessment of your current infrastructure. This includes understanding dependencies between systems, identifying which applications are cloud-ready, and determining the best cloud platform for your needs.\n\nAt Proep.az, we recommend a phased approach to cloud migration. Start with less critical workloads to build experience and confidence, then gradually move more important systems. This approach minimizes risk while allowing your team to develop cloud expertise.\n\nSecurity should be a top priority throughout the migration process. Cloud providers offer robust security tools, but proper configuration is essential. We work with clients to implement security best practices including encryption, access controls, and continuous monitoring.\n\nFinally, don't underestimate the importance of training. Your team needs to understand how to operate in the new cloud environment to realize its full benefits."
+            },
+            {
+                "id": 3,
+                "title": "Building Scalable APIs",
+                "excerpt": "Architecture patterns and best practices for high-performance API development.",
+                "date": "January 5, 2026",
+                "category": "Development",
+                "content": "APIs are the backbone of modern software architecture. Whether you're building a mobile app, integrating with third-party services, or creating a microservices ecosystem, well-designed APIs are essential for success.\n\nThe first principle of API design is consistency. Use standard HTTP methods, meaningful status codes, and predictable URL patterns. This makes your APIs easier to understand and reduces the learning curve for developers.\n\nPerformance is another critical consideration. Implement pagination for large datasets, use caching strategically, and consider rate limiting to protect your servers from abuse. At Proep.az, we use tools like Redis for caching and implement efficient database queries to ensure fast response times.\n\nDocumentation is often overlooked but crucial for API adoption. We recommend using OpenAPI specifications to create interactive documentation that stays in sync with your actual API implementation.\n\nSecurity must be built into your API from the start. Use industry-standard authentication like OAuth 2.0, validate all inputs, and encrypt data in transit. Regular security audits help identify vulnerabilities before they become problems.\n\nFinally, plan for scale from day one. Use load balancers, design stateless services, and implement horizontal scaling strategies to handle growth without major architectural changes."
+            }
+        ]
+    },
+    "contact": {
+        "title": "Get in Touch",
+        "subtitle": "Let's discuss your next project and how we can help.",
+        "form": {
+            "name": "Full Name",
+            "email": "Email Address",
+            "phone": "Phone Number",
+            "message": "Your Message",
+            "send": "Send Message"
+        },
+        "info": {
+            "title": "Contact Information",
+            "address": "Address",
+            "addressText": "Caspian Plaza, Baku, Azerbaijan",
+            "email": "Email",
+            "emailText": "info@proep.az",
+            "phone": "Phone",
+            "phoneText": "+994 50 208 11 08",
+            "hours": "Working Hours",
+            "hoursText": "Mon – Fri | 09:00 – 18:00"
+        },
+        "success": "Your message has been sent successfully! We will contact you soon.",
+        "error": "An error occurred. Please try again."
+    },
+    "footer": {
+        "description": "Enterprise technology solutions for the modern world.",
+        "solutions": "Solutions",
+        "company": "Company",
+        "copyright": "All rights reserved."
+    }
+}

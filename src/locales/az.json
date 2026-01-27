@@ -1,0 +1,243 @@
+{
+    "nav": {
+        "home": "Ana Səhifə",
+        "services": "Xidmətlər",
+        "portfolio": "Layihələr",
+        "blog": "Xəbərlər",
+        "contact": "Əlaqə"
+    },
+    "hero": {
+        "title": "Müasir Texnologiya Həlləri",
+        "subtitle": "Biz şirkətlərə süni intellekt, backend inkişafı və bulud texnologiyaları ilə fəaliyyətlərini təkmilləşdirməyə kömək edirik.",
+        "cta": "Layihəyə Başla",
+        "secondary": "Ətraflı Məlumat"
+    },
+    "intro": {
+        "title": "Niyə Proep?",
+        "description": "İllərdir müəssisə texnologiyaları sahəsində çalışırıq və miqyaslana bilən həllər təqdim edirik. Komandamız süni intellekt, backend inkişafı və proseslərin avtomatlaşdırılması üzrə ixtisaslaşıb.",
+        "stats": {
+            "projects": "50+ Layihə",
+            "clients": "30+ Müştəri",
+            "years": "5+ İl"
+        }
+    },
+    "services": {
+        "title": "Xidmətlərimiz",
+        "subtitle": "Biznesinizin tələblərinə uyğun hərtərəfli texnologiya həlləri.",
+        "items": [
+            {
+                "title": "Süni İntellekt",
+                "description": "Daha ağıllı qərarlar üçün AI modelləri və avtomatlaşdırmanı biznes proseslərinizə inteqrasiya edirik."
+            },
+            {
+                "title": "Backend İnkişafı",
+                "description": "Tətbiqləriniz üçün miqyaslana bilən və təhlükəsiz server sistemləri və API-lər hazırlayırıq."
+            },
+            {
+                "title": "Bulud Həlləri",
+                "description": "AWS, Azure və GCP infrastrukturunun qurulması, köçürülməsi və idarə edilməsi xidmətləri."
+            },
+            {
+                "title": "Avtomatlaşdırma",
+                "description": "İş axınlarını avtomatlaşdırır və təşkilat daxilində əməliyyat səmərəliliyini artırırıq."
+            }
+        ]
+    },
+    "projects": {
+        "title": "Layihələrimiz",
+        "subtitle": "Son dövrdə həyata keçirdiyimiz uğurlu layihələrdən nümunələr.",
+        "viewAll": "Bütün Layihələrə Bax",
+        "viewProject": "Layihəyə Bax",
+        "items": [
+            {
+                "id": 1,
+                "title": "GoSport.az - İdman Platforması",
+                "shortDesc": "İdman həvəskarları üçün müasir onlayn platforma. İdman hadisələri, xəbərlər və interaktiv funksiyalar.",
+                "description": "GoSport.az idman həvəskarları üçün yaradılmış müasir onlayn platformadır. Platforma idman hadisələri, canlı nəticələr, xəbərlər və analitika təqdim edir. İstifadəçilər müxtəlif idman növləri haqqında məlumat əldə edə, hadisələri izləyə və interaktiv funksiyalardan istifadə edə bilər.",
+                "technologies": [
+                    "React",
+                    "Node.js",
+                    "PostgreSQL",
+                    "Redis",
+                    "WebSocket"
+                ],
+                "features": [
+                    "Responsive dizayn - bütün cihazlarda mükəmməl görünüş",
+                    "Canlı nəticələr - real-time idman hadisələri",
+                    "İnteraktiv xəritələr və statistikalar",
+                    "İstifadəçi profilləri və sosial funksiyalar",
+                    "SEO optimallaşdırılmış struktur"
+                ],
+                "url": "https://gosport.az"
+            },
+            {
+                "id": 2,
+                "title": "Courir.az - İdman və Atletika Portalı",
+                "shortDesc": "İdman və atletika üzrə məlumat portalı. Qaçış, atletika və idman tədbirləri haqqında məlumat.",
+                "description": "Courir.az idman və atletika sahəsində məlumat portalıdır. Platforma qaçış, atletika yarışları, idman tədbirləri və təlim proqramları haqqında məlumat təqdim edir. İstifadəçilər yarış nəticələrini, təqvimləri və idmançı profillərini görə bilər.",
+                "technologies": [
+                    "Vue.js",
+                    "Node.js",
+                    "MongoDB",
+                    "Express",
+                    "REST API"
+                ],
+                "features": [
+                    "Yarış nəticələri və statistikalar",
+                    "İdman təqvimi və tədbirlər",
+                    "İdmançı profilləri və performans məlumatları",
+                    "Təlim proqramları və tövsiyələr",
+                    "Mobil uyğun dizayn"
+                ],
+                "url": "https://courir.az"
+            },
+            {
+                "id": 3,
+                "title": "Trust Garant - Təminat və Zəmanət Həlləri",
+                "shortDesc": "Təminat və zəmanət xidmətləri üçün müasir platform. Müştərilərə etibarlı təminat həlləri təqdim edir.",
+                "description": "Trust Garant təminat və zəmanət xidmətləri üçün yaradılmış müasir platformadır. Şirkət müştərilərə geniş təminat və zəmanət həlləri təqdim edir. Platforma onlayn müraciət, təminat izləmə və müştəri dəstəyi funksiyalarını əhatə edir.",
+                "technologies": [
+                    "React",
+                    "TypeScript",
+                    "Node.js",
+                    "PostgreSQL",
+                    "Stripe API"
+                ],
+                "features": [
+                    "Onlayn təminat müraciətləri",
+                    "Təminat statusu izləmə sistemi",
+                    "Müştəri portalı və sənədlərin idarəetməsi",
+                    "Təhlükəsiz ödəniş inteqrasiyası",
+                    "Çoxdilli dəstək (TR, AZ, EN)"
+                ],
+                "url": "https://trustgarant.com"
+            },
+            {
+                "id": 4,
+                "title": "Zum - İnnovativ Biznes Həlləri",
+                "shortDesc": "Müasir biznes həlləri üçün platform. Şirkətlərə innovativ texnologiyalar və xidmətlər təqdim edir.",
+                "description": "Zum müasir biznes həlləri üçün yaradılmış platformadır. Şirkət müxtəlif sahələrdə innovativ texnologiyalar və xidmətlər təqdim edir. Platforma biznes proseslərinin optimallaşdırılması, avtomatlaşdırma və rəqəmsal transformasiya həlləri təklif edir.",
+                "technologies": [
+                    "Next.js",
+                    "Node.js",
+                    "PostgreSQL",
+                    "GraphQL",
+                    "Docker"
+                ],
+                "features": [
+                    "Biznes proseslərinin avtomatlaşdırılması",
+                    "Rəqəmsal transformasiya həlləri",
+                    "Cloud-based infrastruktur",
+                    "Real-time analytics və hesabatlar",
+                    "API inteqrasiyaları"
+                ],
+                "url": "https://zum.az"
+            },
+            {
+                "id": 5,
+                "title": "Damla Mebel - Mebel və Dizayn Həlləri",
+                "shortDesc": "Mebel və daxili dizayn həlləri üçün onlayn mağaza. Müasir mebel kolleksiyaları və dizayn xidmətləri.",
+                "description": "Damla Mebel mebel və daxili dizayn həlləri üçün yaradılmış onlayn mağazadır. Şirkət müasir mebel kolleksiyaları, daxili dizayn xidmətləri və məsləhət təqdim edir. Platforma istifadəçilərə geniş mebel seçimi, 3D vizualizasiya və onlayn sifariş imkanı verir.",
+                "technologies": [
+                    "React",
+                    "Node.js",
+                    "PostgreSQL",
+                    "Stripe",
+                    "3D Visualization"
+                ],
+                "features": [
+                    "Geniş mebel kataloqu və filtrlər",
+                    "3D otaq vizualizasiyası",
+                    "Onlayn sifariş və ödəniş sistemi",
+                    "Dizayn məsləhəti və konsultasiya",
+                    "Çatdırılma və quraşdırma xidmətləri"
+                ],
+                "url": "https://damlamebel.az"
+            },
+            {
+                "id": 6,
+                "title": "Barok Mebel - Premium Mebel Həlləri",
+                "shortDesc": "Premium mebel və daxili dizayn həlləri üçün onlayn platform. Yüksək keyfiyyətli mebel və xüsusi dizayn xidmətləri.",
+                "description": "Barok Mebel premium mebel və daxili dizayn həlləri üçün yaradılmış onlayn platformadır. Şirkət yüksək keyfiyyətli mebel, xüsusi dizayn həlləri və ekskluziv kolleksiyalar təqdim edir. Platforma istifadəçilərə premium mebel seçimi, fərdi dizayn xidmətləri və məsləhət imkanı verir.",
+                "technologies": [
+                    "Vue.js",
+                    "Laravel",
+                    "MySQL",
+                    "Payment Gateway",
+                    "CMS"
+                ],
+                "features": [
+                    "Premium mebel kolleksiyaları",
+                    "Fərdi dizayn və konfiqurasiya",
+                    "Onlayn kataloq və 360° görüntülər",
+                    "Məsləhət və dizayn xidmətləri",
+                    "Premium müştəri dəstəyi"
+                ],
+                "url": "https://barokmebel.az"
+            }
+        ]
+    },
+    "blog": {
+        "title": "Son Xəbərlər",
+        "subtitle": "Texnologiya sahəsindəki yeniliklərdən və şirkət xəbərlərimizdən xəbərdar olun.",
+        "readMore": "Davamını Oxu",
+        "viewAll": "Bütün Məqalələrə Bax",
+        "backToBlog": "Xəbərlərə Qayıt",
+        "items": [
+            {
+                "id": 1,
+                "title": "Müəssisələrdə Süni İntellektin Gələcəyi",
+                "excerpt": "Süni intellekt biznes əməliyyatlarını necə dəyişir və bu, şirkətiniz üçün nə deməkdir.",
+                "date": "15 Yanvar 2026",
+                "category": "Süni İntellekt",
+                "content": "Süni intellekt artıq gələcəklə bağlı bir konsepsiya deyil – bu gün bizneslərin fəaliyyət göstərməsini fəal şəkildə dəyişir. Avtomatlaşdırılmış müştəri xidmətindən proqnozlaşdırıcı analitikaya qədər, süni intellekt şirkətlərə daha sürətli və daha ağıllı qərarlar qəbul etməyə kömək edir.\n\nProep.az-da süni intellekt inteqrasiyasının əməliyyat xərclərini 40%-ə qədər azaltdığını, eyni zamanda dəqiqliyi və müştəri məmnuniyyətini artırdığını müşahidə etmişik. Bank və pərakəndə satış sektorlarındakı müştərilərimiz fırıldaqçılığın aşkarlanmasından inventar idarəçiliyinə qədər hər şeyi əhatə edən fərdi süni intellekt həllərindən faydalanıblar.\n\nUğurlu süni intellekt tətbiqinin açarı aydın biznes məqsədləri ilə başlamaqdır. Süni intellekti sadəcə moda olduğu üçün qəbul etmək əvəzinə, şirkətlər avtomatlaşdırma və maşın öyrənməsinin ölçülə bilən dəyər təmin edə biləcəyi müəyyən problem nöqtələrini müəyyən etməlidirlər.\n\nİrəliyə baxdıqda, təbii dil emalı, kompüter görmə və avtonom qərar qəbuletmə sistemləri kimi sahələrdə daha mürəkkəb süni intellekt tətbiqlərini görəcəyimizi gözləyirik. İndi süni intellekt imkanlarını inkişaf etdirməyə başlayan bizneslər qarşıdakı illərdə əhəmiyyətli rəqabət üstünlüyünə malik olacaqlar."
+            },
+            {
+                "id": 2,
+                "title": "Bulud Köçürməsinin Ən Yaxşı Təcrübələri",
+                "excerpt": "Uğurlu bulud köçürməsi layihəsi üçün əsas mülahizələr və strategiyalar.",
+                "date": "10 Yanvar 2026",
+                "category": "Bulud",
+                "content": "Buluda köçmək şirkətin verə biləcəyi ən əhəmiyyətli texnologiya qərarlarından biridir. Düzgün həyata keçirildikdə, infrastruktur xərclərini azalda, miqyaslanabilirliyi yaxşılaşdıra və yeni imkanlar yarada bilər. Lakin zəif planlaşdırma xərc artımına və təhlükəsizlik zəifliyinə səbəb ola bilər.\n\nHər hansı köçürməyə başlamazdan əvvəl mövcud infrastrukturunuzun hərtərəfli qiymətləndirilməsini aparmaq vacibdir. Bura sistemlər arasındakı asılılıqları anlamaq, hansı tətbiqlərin bulud üçün hazır olduğunu müəyyən etmək və ehtiyaclarınız üçün ən yaxşı bulud platformasını seçmək daxildir.\n\nProep.az-da bulud köçürməsinə mərhələli yanaşma tövsiyə edirik. Təcrübə və inam yaratmaq üçün daha az kritik iş yükləri ilə başlayın, sonra tədricən daha vacib sistemlərə keçin. Bu yanaşma komandanızın bulud təcrübəsi inkişaf etdirərkən riski minimuma endirir.\n\nTəhlükəsizlik köçürmə prosesi boyunca birinci prioritet olmalıdır. Bulud təminatçıları güclü təhlükəsizlik alətləri təklif edir, lakin düzgün konfiqurasiya vacibdir. Şifrələmə, giriş nəzarəti və davamlı monitorinq daxil olmaqla təhlükəsizlik üzrə ən yaxşı təcrübələri tətbiq etmək üçün müştərilərlə işləyirik.\n\nNəhayət, təlimin əhəmiyyətini qiymətləndirməyin. Komandanız tam faydalarını əldə etmək üçün yeni bulud mühitində necə işləməyi başa düşməlidir."
+            },
+            {
+                "id": 3,
+                "title": "Miqyaslana Bilən API-lərin Hazırlanması",
+                "excerpt": "Yüksək performanslı API inkişafı üçün memarlıq nümunələri və ən yaxşı təcrübələr.",
+                "date": "5 Yanvar 2026",
+                "category": "İnkişaf",
+                "content": "API-lər müasir proqram memarlığının əsasını təşkil edir. İstər mobil tətbiq hazırlayın, istər üçüncü tərəf xidmətləri ilə inteqrasiya edin, istərsə də mikroservis ekosistemi yaradın – yaxşı dizayn edilmiş API-lər uğur üçün vacibdir.\n\nAPI dizaynının birinci prinsipi ardıcıllıqdır. Standart HTTP metodlarından, mənalı status kodlarından və proqnozlaşdırıla bilən URL nümunələrindən istifadə edin. Bu, API-lərinizi başa düşməyi asanlaşdırır və tərtibatçılar üçün öyrənmə vaxtını azaldır.\n\nPerformans da kritik əhəmiyyət daşıyır. Böyük verilənlər dəstləri üçün səhifələmə tətbiq edin, keşləmədən strateji şəkildə istifadə edin və serverlərinizi sui-istifadədən qorumaq üçün sürət məhdudiyyəti nəzərdə tutun. Proep.az-da keşləmə üçün Redis kimi alətlərdən istifadə edir və sürətli cavab vaxtları təmin etmək üçün effektiv verilənlər bazası sorğuları tətbiq edirik.\n\nSənədləşdirmə tez-tez gözdən qaçırılır, lakin API-nin qəbulu üçün çox vacibdir. Faktiki API tətbiqinizlə sinxron qalan interaktiv sənədləşdirmə yaratmaq üçün OpenAPI spesifikasiyalarından istifadə etməyi tövsiyə edirik.\n\nTəhlükəsizlik API-niza əvvəldən daxil edilməlidir. OAuth 2.0 kimi sənaye standartı autentifikasiyadan istifadə edin, bütün girişləri yoxlayın və məlumatları ötürmə zamanı şifrələyin. Müntəzəm təhlükəsizlik auditləri zəiflikləri problem olmadan əvvəl müəyyən etməyə kömək edir.\n\nNəhayət, ilk gündən miqyas üçün plan qurun. Yük balanslaşdırıcılarından istifadə edin, vəziyyətsiz xidmətlər dizayn edin və əsas memarlıq dəyişiklikləri olmadan böyüməni idarə etmək üçün üfüqi miqyaslanma strategiyaları tətbiq edin."
+            }
+        ]
+    },
+    "contact": {
+        "title": "Bizimlə Əlaqə",
+        "subtitle": "Növbəti layihənizi müzakirə edək və sizə necə kömək edə biləcəyimizi öyrənək.",
+        "form": {
+            "name": "Ad Soyad",
+            "email": "E-poçt Ünvanı",
+            "phone": "Telefon Nömrəsi",
+            "message": "Mesajınız",
+            "send": "Mesaj Göndər"
+        },
+        "info": {
+            "title": "Əlaqə Məlumatları",
+            "address": "Ünvan",
+            "addressText": "Caspian Plaza, Bakı, Azərbaycan",
+            "email": "E-poçt",
+            "emailText": "info@proep.az",
+            "phone": "Telefon",
+            "phoneText": "+994 50 208 11 08",
+            "hours": "İş Saatları",
+            "hoursText": "Bazar ertəsi – Cümə | 09:00 – 18:00"
+        },
+        "success": "Mesajınız uğurla göndərildi! Ən qısa zamanda sizinlə əlaqə saxlayacağıq.",
+        "error": "Xəta baş verdi. Zəhmət olmasa yenidən cəhd edin."
+    },
+    "footer": {
+        "description": "Müasir dünya üçün müəssisə texnologiya həlləri.",
+        "solutions": "Xidmətlər",
+        "company": "Şirkət",
+        "copyright": "Bütün hüquqlar qorunur."
+    }
+}
