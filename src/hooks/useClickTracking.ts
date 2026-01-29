@@ -1,6 +1,9 @@
 import { useEffect, useCallback } from 'react';
 
+// Use relative path in production, full URL in development
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+// Remove /api from VITE_API_URL since we already include it in the endpoint
+const BASE_URL = API_URL.replace(/\/api$/, '');
 
 /**
  * Hook to track link clicks
@@ -14,7 +17,7 @@ export function useClickTracking() {
                 return;
             }
 
-            await fetch(`${API_URL}/api/click`, {
+            await fetch(`${BASE_URL}/api/click`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
