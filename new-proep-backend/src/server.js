@@ -4,6 +4,10 @@ import dotenv from 'dotenv';
 
 import appealRoutes from './routes/appealRoutes.js';
 import clickRoutes from './routes/clickRoutes.js';
+import authRoutes from './routes/authRoutes.js';
+import menuRoutes from './routes/menuRoutes.js';
+import usersRoutes from './routes/usersRoutes.js';
+import serverRoutes from './routes/serverRoutes.js';
 
 dotenv.config();
 
@@ -17,6 +21,7 @@ app.use(cors({
         'http://localhost:5174',
         'https://proep.az',
         'https://www.proep.az',
+        'http://localhost:3000' // Existing backend just in case
     ],
     credentials: true,
 }));
@@ -32,6 +37,10 @@ app.get('/health', (req, res) => {
 // Routes
 app.use('/api', appealRoutes);
 app.use('/api', clickRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/admin/menus', menuRoutes);
+app.use('/api/admin', usersRoutes);
+app.use('/api/admin', serverRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
